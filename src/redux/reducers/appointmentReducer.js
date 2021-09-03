@@ -10,6 +10,12 @@ const initialState = {
 
 const appointmentReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case ActionTypes.CLEAN_STATE: {
+      return {
+        ...initialState,
+        errLogout: null,
+      };
+    }
     case ActionTypes.CREATE_APPOINTMENT_START:
       return {
         ...state,

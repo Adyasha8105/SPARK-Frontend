@@ -29,6 +29,12 @@ const initialState = {
 
 const patientReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CLEAN_STATE: {
+      return {
+        ...initialState,
+        errorMessage:null,
+      };
+    }
     case ActionTypes.GET_ALL_PATIENTS:
       return {
         ...state,

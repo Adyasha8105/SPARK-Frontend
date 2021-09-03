@@ -29,6 +29,12 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CLEAN_STATE: {
+      return {
+        ...initialState,
+        isLoginError: "",
+      };
+    }
     case ActionTypes.CREATE_USER_START: {
       return {
         ...state,

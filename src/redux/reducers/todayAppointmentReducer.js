@@ -9,6 +9,12 @@ const initialState = {
 
 const todayAppointmentReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case ActionTypes.CLEAN_STATE: {
+      return {
+        ...initialState,
+        errLogout:null,
+      };
+    }
     case ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS: {
       const todayDate = new Date().toJSON().slice(0, 10);
       const newArray = payload.response.filter(

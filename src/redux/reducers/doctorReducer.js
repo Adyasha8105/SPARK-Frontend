@@ -8,6 +8,12 @@ const initialState = {
 
 const doctorReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CLEAN_STATE: {
+      return {
+        ...initialState,
+        errLogout:null,
+      };
+    }
     case ActionTypes.GET_ALL_DOC: {
       console.log(action.payload);
       return {
