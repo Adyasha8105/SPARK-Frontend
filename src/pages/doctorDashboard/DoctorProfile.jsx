@@ -181,7 +181,7 @@ function DoctorProfile() {
   const addSpecialization = () => {
     if (specializationName !== "") {
       setSpecialization([...specialization, specializationName]);
-      setSpecializationName("");
+      // setSpecializationName("");
     }
   };
   const removeSpecialization = (index) => {
