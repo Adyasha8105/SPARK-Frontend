@@ -1,3 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.main-dashboard {
+  display: grid;
+  grid: [stack] 1fr / min-content [stack] 1fr;
+}
+
+@media (max-width: 640px) {
+  .main-dashboard > aside,
+  .main-dashboard > main {
+    grid-area: stack;
+  }
+}
+
+#sidenav-open {
+  --easeOutExpo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.6s;
+  display: grid;
+  grid-template-columns: [nav] 1fr [escape] 2fr;
+}
+
+@media (max-width: 640px) {
+  #sidenav-open {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+    visibility: hidden;
+    transform: translateX(-110vw);
+    will-change: transform;
+    transition: transform var(--duration) var(--easeOutExpo),
+      visibility 0s linear var(--duration);
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #sidenav-open:target {
+    visibility: visible;
+    transform: translateX(0);
+    transition: transform var(--duration) var(--easeOutExpo);
+  }
+
+  #sidenav-open:target ~ main {
+    filter: blur(0.5em);
+    z-index: -1;
+  }
+}
+
+.grid-cols-auto-1fr-auto {
+  grid-template-columns: auto 1fr auto;
+}
+
+#profile-progress {
+  border: 1em solid white;
+  border-right-color: #4a00e0;
+  border-top-color: #4a00e0;
+  border-bottom-color: #4a00e0;
+  animation: thickening 1s 0.5s linear normal;
+  border-left-color: white;
+  border-radius: 50%;
+}
+
+@keyframes thickening {
+  from {
+    border-width: 0.2em;
+  }
+  to {
+    border-width: 1em;
+  }
+}
