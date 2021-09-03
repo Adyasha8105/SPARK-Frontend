@@ -1,4 +1,4 @@
-const SPARK_API_URL = "http://localhost:8000/";
+const SPARK_API_URL = "https://spark-healthlines-backend.herokuapp.com/";
 
 const LOGIN_PATIENT_URL = SPARK_API_URL + "auth/patient/login";
 const LOGIN_DOCTOR_URL = SPARK_API_URL + "auth/doctor/login";
