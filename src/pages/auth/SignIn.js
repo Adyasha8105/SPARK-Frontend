@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -56,7 +57,7 @@ export default function SignIn(props) {
         currentUser.type === "doctor"
       )
         history.push("/doctor-profile");
-      else if (currentUser.isLoginError == "") setErrMessage("");
+      else if (currentUser.isLoginError === "") setErrMessage("");
     }
   }, [currentUser]);
 

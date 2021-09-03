@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FiFastForward } from "react-icons/fi";

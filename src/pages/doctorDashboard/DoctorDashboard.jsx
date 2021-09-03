@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import PatientProfileCard from "../../components/PatientProfileCard.jsx";
@@ -77,14 +79,15 @@ function DoctorDashboard() {
     }
   };
 
-  for (var i = 1; i <= appointmentList.length; i++) {
+  for (var j = 1; i <= appointmentList.length; j++) {
     waitingListComponents.push(
       <WaitingListItem
-        serialNo={appointmentList[i - 1].serialno}
-        time={`${convertTo12(waitingListTimeStart[i - 1])} - ${convertTo12(
-          waitingListTimeEnd[i - 1]
+        serialNo={appointmentList[j - 1].serialno}
+        time={`${convertTo12(waitingListTimeStart[j - 1])} - ${convertTo12(
+          waitingListTimeEnd[j - 1]
         )}`}
         date={date}
+        // eslint-disable-next-line no-loop-func
         onClickFunc={() => {
           handleCancelAppointment();
           waitingListTimeEnd = waitingListTimeEnd.slice(1);

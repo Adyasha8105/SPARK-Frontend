@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import DataDisplay from "../components/landingPage/DataDisplay";
 import Footer from "../components/landingPage/Footer";
@@ -6,7 +7,7 @@ import Hero from "../components/landingPage/Hero";
 import WhyUs from "../components/landingPage/WhyUs";
 import ContactUs from "../components/landingPage/ContactUs";
 import { useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { cleanStateAction } from "../redux/actions/userAuthAction";
 import { useDispatch } from "react-redux";
 

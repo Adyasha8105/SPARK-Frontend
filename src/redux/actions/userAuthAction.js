@@ -7,8 +7,6 @@ import {
   logoutPatient,
   SignupDoctor,
   SignupPatient,
-  signupUser,
-  testRoute,
 } from "../../services/api/index";
 
 const userLoginStart = () => ({

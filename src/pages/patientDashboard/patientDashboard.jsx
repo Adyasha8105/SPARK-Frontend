@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import DoctorProfileCard from "../../components/DoctorProfileCard.jsx";
@@ -9,7 +11,6 @@ import { HiLogout } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDoctorsAction } from "../../redux/actions/doctorsAction";
 import {
-  cancelAppointmentAction,
   createAppointmentAction,
   getAppointmentAction,
   getTodayAppointmentAction,
@@ -117,22 +118,22 @@ function PatientDashboard() {
     else if (id === 2) return "Next";
     else return "Queued";
   };
-  for (var i = 1; i <= todayAppointment.length; i++) {
-    console.log("TIME", convertTo12(waitingListTimeEnd[i]));
+  for (var j = 1; j <= todayAppointment.length; j++) {
+    console.log("TIME", convertTo12(waitingListTimeEnd[j]));
     waitingListComponents.push(
       <WaitingListItem
-        key={i}
-        serialNo={todayAppointment[i - 1].serialno}
+        key={j}
+        serialNo={todayAppointment[j - 1].serialno}
         time={`${convertTo12(waitingListTimeStart[i])} - ${convertTo12(
-          waitingListTimeEnd[i]
+          waitingListTimeEnd[j]
         )}`}
         isUser={
-          todayAppointment[i - 1].pphoneno === currentUser.phoneno
+          todayAppointment[j - 1].pphoneno === currentUser.phoneno
             ? true
             : false
         }
         date={date}
-        appointmentStatus={calculateAppointmentStatus(i)}
+        appointmentStatus={calculateAppointmentStatus(j)}
       />
     );
   }
@@ -177,7 +178,7 @@ function PatientDashboard() {
   useEffect(() => {
     if (todayAppointmentList.length > 0) {
       const newArray = todayAppointmentList.filter(
-        (item) => item.status != "completed"
+        (item) => item.status !== "completed"
       );
       newArray[0].status = "ongoing";
       if (newArray.length > 1) newArray[1].status = "upcoming";
@@ -225,7 +226,7 @@ function PatientDashboard() {
 
   const handleLogout = () => {
     setLoading(true);
-    if (currentUser.type == "doctor")
+    if (currentUser.type === "doctor")
       dispatch(doctorLogout(currentUser.access, currentUser.phoneno));
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
   };
