@@ -214,7 +214,7 @@ function Inventory() {
 
                               <div className="mt-4 flex justify-center">
                                 <WaitingListItemButton
-                                  appointmentStatus="cancel"
+                                  appointmentStatus="Cancel"
                                   onClickFunc={handleCancelAppointment}
                                   item={item}
                                   isClicked={setCancelItem}
