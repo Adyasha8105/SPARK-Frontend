@@ -41,7 +41,7 @@ function WaitingListItemButton({
     buttonColor = "bg-green-400";
     buttonBorderColor = "border-white";
     buttonTextColor = "text-white";
-  } else if (appointmentStatus === "NewAppointment") {
+  } else if (appointmentStatus === "New Appointment") {
     buttonColor = "bg-dark";
     buttonTextColor = "text-white";
     buttonBorderColor = "border-white";
@@ -51,7 +51,7 @@ function WaitingListItemButton({
   return (
     <button
       onClick={() => {
-        if (appointmentStatus === "NewAppointment") setClicked(true);
+        if (appointmentStatus === "New Appointment") setClicked(true);
       }}
       className={`${buttonColor} ${buttonTextColor} ${PaddingButton} md:mt-0 mt-5 outline-none px-4 py-2 flex flex-row justify-center space-x-2 items-center border ${buttonBorderColor} rounded-md`}
     >

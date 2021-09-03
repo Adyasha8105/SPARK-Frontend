@@ -111,7 +111,7 @@ export default function SignIn(props) {
                     <div className="rounded-t mb-0 px-6 py-6">
                       <div className=" mb-3">
                         <h6 className="text-primary text-2xl font-bold">
-                          Sign In
+                          Sign In as {type}
                         </h6>
                       </div>
 
