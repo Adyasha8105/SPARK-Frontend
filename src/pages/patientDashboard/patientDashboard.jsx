@@ -124,7 +124,7 @@ function PatientDashboard() {
       <WaitingListItem
         key={j}
         serialNo={todayAppointment[j - 1].serialno}
-        time={`${convertTo12(waitingListTimeStart[i])} - ${convertTo12(
+        time={`${convertTo12(waitingListTimeStart[j])} - ${convertTo12(
           waitingListTimeEnd[j]
         )}`}
         isUser={
