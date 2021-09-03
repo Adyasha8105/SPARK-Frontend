@@ -15,8 +15,8 @@ and boredom that can easily be avoided.
 
 ## Highlights
 
-✨ No waiting in long queues for booking appointments, patients can book their slot in the comfort of their homes.
-✨ Patients can track the queue virtually in the real time and visit the clinic accordingly, no rush or crowd anywhere.
+✨ No waiting in long queues for booking appointments, patients can book their slot in the comfort of their homes.</br>
+✨ Patients can track the queue virtually in the real time and visit the clinic accordingly, no rush or crowd anywhere.</br>
 ✨ Social Distancing  shall be  properly practised during the covid times.
 
 ## Features
