@@ -1,4 +1,7 @@
-# Spark Healthlines
+<p align="center">
+  <img alt="logo" src="./public/favicon.ico">
+</p>
+<h1 align="center">Spark Healthlines</h1>
 
 #### A Virtual Waiting Queue App for Medicals.
 
@@ -30,6 +33,16 @@ and boredom that can easily be avoided.
 - Both doctors and patients shall be having profiles created with their details on it.
 - No other patient or user can view the details of any other patient which maintains the privacy.
 - Patients can directly access and book slots, no involvement of any third-party or charge of extra fees.
+
+
+
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/> <img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase"/> <img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
+</p>
+
+
+
+## How to use the app
 
 
 
