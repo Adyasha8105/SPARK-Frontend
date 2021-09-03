@@ -2,6 +2,12 @@
   <img alt="logo" width="100px" src="./public/favicon.svg">
 </p>
 <h1 align="center">Spark Healthlines</h1>
+<h3 align="center">Tech Stack</h3>
+
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/><img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/cassandra-%231287B1.svg?style=for-the-badge&logo=apache-cassandra&logoColor=white"/><img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
+</p>
+
 
 #### A Virtual Waiting Queue App for Medicals.
 
@@ -52,11 +58,3 @@ For doctors:
 - In your dashboard, the waiting virtual list of patients of that day would be visible along with the details of the current patient.
 - After completion of the visit of a patient, the doctor needs to click on the next button which shall proceed the virtual queue one step ahead.
 - This would update the virtual queue and patients shall know their current position and estimated visiting time.
-
-<h3 align="center">Tech Stack</h3>
-
-<p align="center">
-  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/><img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/cassandra-%231287B1.svg?style=for-the-badge&logo=apache-cassandra&logoColor=white"/><img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
-</p>
-
-
