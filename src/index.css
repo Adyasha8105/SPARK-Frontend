@@ -55,22 +55,3 @@
 .grid-cols-auto-1fr-auto {
   grid-template-columns: auto 1fr auto;
 }
-
-#profile-progress {
-  border: 1em solid white;
-  border-right-color: #4a00e0;
-  border-top-color: #4a00e0;
-  border-bottom-color: #4a00e0;
-  animation: thickening 1s 0.5s linear normal;
-  border-left-color: white;
-  border-radius: 50%;
-}
-
-@keyframes thickening {
-  from {
-    border-width: 0.2em;
-  }
-  to {
-    border-width: 1em;
-  }
-}
