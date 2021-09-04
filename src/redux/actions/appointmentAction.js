@@ -14,8 +14,6 @@ export const createAppointmentAction = (data) => {
     });
     createAppointment(JSON.stringify(data))
       .then((result) => {
-        console.log("Created appointment");
-        console.log(result);
         dispatch({
           type: ActionTypes.CREATE_APPOINTMENT_SUCCESS,
           payload: result,
@@ -78,8 +76,6 @@ export const cancelAppointmentAction = (data) => {
   return (dispatch) => {
     cancelAppointment(JSON.stringify(data))
       .then((result) => {
-        console.log("Cancelling appointment");
-        console.log(result);
         dispatch({
           type: ActionTypes.CANCEL_APPOINTMENT,
           payload: data.createdat,

@@ -18,7 +18,6 @@ import { updateDoctorAsync } from "../../redux/actions/updateUserAction.js";
 import { FadeLoader } from "react-spinners";
 
 function SpecializationTag(props) {
-  console.log(props);
   return (
     <div className="flex justify-between items-center px-2 py-1 bg-blue-300 sm:text-md  lg:text-md rounded-3xl">
       <span>{props.tag}</span>
@@ -86,7 +85,6 @@ function DoctorProfile() {
   }, []);
 
   useEffect(() => {
-    // console.log(authUser)
     if (!authUser.isSignedUp) history.push("/");
   }, [authUser]); // Shree you can comment this out if needed for testing purposes
 
@@ -95,7 +93,6 @@ function DoctorProfile() {
     if (isUpdated && !registeredUser.errorMessage)
       history.push("/doctor-dashboard");
     else if (registeredUser.isLoading) console.log("Loading");
-    //Shree please get some loader for this
     else if (registeredUser.errorMessage)
       setMessage(registeredUser.errorMessage);
     else if (registeredUser.registered && !authUser.isLoggedIn)
@@ -109,10 +106,6 @@ function DoctorProfile() {
     //   history.push("/doctor-dashboard");
   }, [registeredUser]);
 
-  useEffect(() => {
-    console.log(specialization);
-  }, [specialization]);
-
   const handleDays = (e) => {
     if (workingDays.includes(e.target.name))
       setWorkingDays(
@@ -124,7 +117,6 @@ function DoctorProfile() {
   };
 
   const handleSubmit = async (e) => {
-    console.log("Submitted");
     e.preventDefault();
 
     setLoading(true);

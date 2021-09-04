@@ -27,11 +27,6 @@ function Inventory() {
   const [loading, setLoading] = useState(false);
   const [cancelItem, setCancelItem] = useState(null);
 
-  console.log("inventory");
-  console.log(appointmentList);
-
-  // const history = useHistory();
-
   useEffect(() => {
     if (!currentUser.isLoggedIn) history.push("/");
   }, []);
@@ -49,7 +44,6 @@ function Inventory() {
   const handleCancelAppointment = () => {
     //----------------FUNCTION TO CANCEL APPOINTMENT-----------------------//
 
-    console.log("Cancel Item", cancelItem);
     // to remove the "Z" at the end of createdat
     // const formatted = appointmentDetails(appointmentDate).createdat;
     // formatted = formatted.slice(0, -1);

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import PatientProfileCard from "../../components/PatientProfileCard.jsx";
@@ -14,44 +16,39 @@ import {
   getDoctorProfile,
   getAllPatients,
 } from "../../redux/actions/getUserAction.js";
-import { getAppointmentAction, getTodayAppointmentAction, updateAppointmentAction } from "../../redux/actions/appointmentAction.js";
+import {
+  getTodayAppointmentAction,
+  updateAppointmentAction,
+} from "../../redux/actions/appointmentAction.js";
 import { FadeLoader } from "react-spinners";
 import DateTime from "../../components/DateTime.js";
 import SideBarAnimation from "../../images/SideBarAnimation.json";
 import { HiLogout } from "react-icons/hi";
 import { MdDashboard, MdPerson } from "react-icons/all";
 import InventoryAnimation from "../../images/InventoryAnimation.json";
-import { addTime, convertTo12 } from "../../utils/time";
-import { cancelAppointmentAction } from "../../redux/actions/appointmentAction";
+import { convertTo12 } from "../../utils/time";
 
 function DoctorDashboard() {
   const currentUser = useSelector((state) => state.authReducer);
   const currentPatient = useSelector((state) => state.patientReducer);
   const currentUserDetails = useSelector((state) => state.profileReducer);
-  var appointmentList = useSelector((state) => state.todayAppointmentReducer.appointments);
-  const isUpdated = useSelector((state) => state.todayAppointmentReducer.updated)
-  const [applist,setApplist] = useState([]);
-  const [latestPatient,setLatestPatient] = useState();
+  var appointmentList = useSelector(
+    (state) => state.todayAppointmentReducer.appointments
+  );
+  const isUpdated = useSelector(
+    (state) => state.todayAppointmentReducer.updated
+  );
+  const [applist, setApplist] = useState([]);
+  const [latestPatient, setLatestPatient] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const [loading, setLoading] = useState(true);
-
 
   const { date, time } = DateTime();
 
-
-
-
-
-
-
-
-
   //--------------COMPONENTS MOUNT THEN THIS IS CALLED--------------------------------------------------------------------//
   useEffect(() => {
-
     setLoading(true);
     fetchAllAppointments();
     if (!currentUser.isLoggedIn) history.push("/");
@@ -61,85 +58,60 @@ function DoctorDashboard() {
     }
   }, []);
 
-
   //---------------APPOINTMENT LIST UPDATED THEN THIS IS CALLED----------------------------------------------------------//
-  useEffect(()=>{
+  useEffect(() => {
     fetchAllAppointments();
-  },[isUpdated])
+  }, [isUpdated]);
 
-
-  useEffect(()=>{
-    
-    if(appointmentList.length>0) {
+  useEffect(() => {
+    if (appointmentList.length > 0) {
       getCurrentPatientDetails();
       const newArray = [...appointmentList];
-      console.log("NNNNNNNNNNNNNNEEEEEEEEEEEEEWWWWWWWWWWWWWWW",newArray)
-      if(newArray.length==1)
-      newArray[0].status="Next";
-      else
-      newArray[0].status="Ongoing";
+      if (newArray.length === 1) newArray[0].status = "Next";
+      else newArray[0].status = "Ongoing";
       if (newArray.length > 1) newArray[1].status = "Next";
       setApplist([...newArray]);
     }
-   
-  },[appointmentList])
-
+  }, [appointmentList]);
 
   //------------------AUTHUSER CHANGES OR CURRENT PATIENT CHANGES THEN THIS IS CALLED-------------------------------------//
   useEffect(() => {
     setLoading(false);
-    if(currentPatient.name!="")
-    setLatestPatient(currentPatient)
+    if (currentPatient.name !== "") setLatestPatient(currentPatient);
     if (currentUser.isLogout) history.push("/");
   }, [currentUser, currentPatient]);
 
-
-
-
-
   // ----------------This should be called once AppointmentList is populated-----------------------------------------------//
-
 
   const getCurrentPatientDetails = () => {
     if (appointmentList.length > 0) {
-      console.log(appointmentList[0].pphoneno)
       dispatch(getAllPatients(appointmentList[0].pphoneno));
     } else {
       setLoading(false);
     }
   };
 
-
-
-  
   const handleUpdateAppointment = () => {
     // to remove the "Z" at the end of createdat
 
     var formatted = appointmentList[0].createdat;
     formatted = formatted.slice(0, -1);
 
-    if(!latestPatient)
-    console.log("NO LATEST PATIENT");
-    else
-    {
+    if (!latestPatient) console.log("NO LATEST PATIENT");
+    else {
       const updateData = {
         pphoneno: currentPatient.phoneno,
         dphoneno: currentUser.phoneno,
         apdate: appointmentList[0].apdate,
         createdat: formatted,
-        status: "completed"
+        status: "completed",
       };
-  
-      dispatch(updateAppointmentAction(updateData));
-  
-      
-    }
-    
 
+      dispatch(updateAppointmentAction(updateData));
+    }
   };
 
   //---------------------------------------Piyush code ended---------------------------------------//
-
 
   const fetchAllAppointments = () => {
     const data = {
@@ -149,10 +121,6 @@ function DoctorDashboard() {
     };
 
     dispatch(getTodayAppointmentAction(data));
-
-  
-
-    console.log("APP LIST", appointmentList);
   };
 
   const symptoms =
@@ -168,10 +136,8 @@ function DoctorDashboard() {
     history.push("/doctor-dashboard");
   };
 
-
-
   const handleLogout = (e) => {
-    setLoading(true)
+    setLoading(true);
     if (currentUser.type === "doctor")
       dispatch(doctorLogout(currentUser.access, currentUser.phoneno));
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
@@ -306,23 +272,22 @@ function DoctorDashboard() {
                   </div>
                   <div className="flex flex-row items-center mt-8">
                     <div className="flex flex-col my-2 space-y-4 w-full overflow-x-auto">
-                      {
-                        applist.map((item,index) => {
-
-                          return <WaitingListItem
+                      {applist.map((item, index) => {
+                        return (
+                          <WaitingListItem
                             key={index}
                             serialNo={item.serialno}
-                            time={`${convertTo12(item.aptime.start)} - ${convertTo12(
-                             item.aptime.end
-                            )}`}
+                            time={`${convertTo12(
+                              item.aptime.start
+                            )} - ${convertTo12(item.aptime.end)}`}
                             date={date}
                             onClickFunc={() => {
                               handleUpdateAppointment();
                             }}
                             appointmentStatus={item.status}
                           />
-                        })
-                      }
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

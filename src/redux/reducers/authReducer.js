@@ -64,7 +64,6 @@ const authReducer = (state = initialState, action) => {
       };
     }
     case ActionTypes.SIGNUP_USER_SUCCESS: {
-      console.log("message from signup reducer" + action.payload);
       return {
         ...state,
         isLoginLoading: false,
