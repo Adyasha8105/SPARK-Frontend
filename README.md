@@ -14,10 +14,9 @@
   - [Highlights](#highlights)
   - [Features](#features)
 - [How to use the App](#how-to-use-the-app)
-- [Future Features](#features-that-we-are-planning-to-add)
+- [Future Enhancement](#features-that-we-are-planning-to-add)
 - [License](#license)
 - [Our team](#geeks-behind-this)
-
 
 ## About The Project
 
@@ -31,7 +30,7 @@
 
 <p align="center"><img alt="crowd" width="400px" src="./src/images/crowd.png"></p>
 
-#### Our Solution 
+#### Our Solution
 
 Virtual waiting rooms enable social distancing to support a better patient experience and better outcomes.
 A virtual waiting room helps you prevent your healthcare organization from being associated with pesky sounds, smells, people, and boredom that can easily be avoided.
@@ -56,7 +55,8 @@ A virtual waiting room helps you prevent your healthcare organization from being
 
 ## How to use the app
 
-#### For patients 👨: 
+#### For patients 👨:
+
 - A new user needs to sign up into the app by clicking on the Get Started button. (Or if you are an existing user you can directly login)
 - In the profile tab, update all your details.
 - Then you would need to login and be directed to your dashboard.
@@ -67,7 +67,8 @@ A virtual waiting room helps you prevent your healthcare organization from being
 - You can cancel appointments anytime by clicking on the delete button in the inventory tab.
 
 #### For doctors 👨‍⚕️:
-- A new user needs to Sign up into the app by clicking on the Get Started button. (Or if you are an existing user you can directly login)
+
+- A new user or existing user needs to sign in into the app by clicking on the Apply as doctor button.
 - In the profile tab, update all your details.
 - Then you would need to login and be directed to your dashboard.
 - In your dashboard, the waiting virtual list of patients of that day would be visible along with the details of the current patient.
@@ -81,14 +82,13 @@ A virtual waiting room helps you prevent your healthcare organization from being
 - Authentication through OTP.
 - Store test reports, prescriptions and maintain a complete health record of the patient.
 - Dynamically display the stats of the appointments in the doctor dashboard.
-And many more.
-
+  And many more.
 
 ## Geeks behind this
 
-|<img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">|
-|----------------------------|--------|----------------------------|--------|
-|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>| 
+| <img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">           |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| <p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>    | <p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>        | <p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>       | <p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p> |
 
 ## License
 
