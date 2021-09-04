@@ -4,7 +4,7 @@
 <h1 align="center">Spark Healthlines</h1>
 
 <p align="center">
-  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/><img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/cassandra-%231287B1.svg?style=for-the-badge&logo=apache-cassandra&logoColor=white"/><img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
+  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/><img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"/><img alt="AstraDB" src="https://img.shields.io/badge/astradb-EB6C34.svg?style=for-the-badge&logo=astra-db&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/cassandra-%231287B1.svg?style=for-the-badge&logo=apache-cassandra&logoColor=white"/><img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
 </p>
 <h4 align="center">(<a href="https://github.com/Adyasha8105/SPARK-Frontend">Frontend</a> / <a href="https://github.com/Adyasha8105/SPARK-Backend">Backend</a>)</h4>
 
@@ -88,4 +88,4 @@ Distributed under the GNU License. See `LICENSE.md` for more information.
 
 |<img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">|
 |----------------------------|--------|----------------------------|--------|
-|<p align="center">[Piyush Pradhan](https://github.com/piyushpradhan)</p>|<p align="center">[Shree Mishra](https://github.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://github.com/Rupayan789)</p>|  
+|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>|  

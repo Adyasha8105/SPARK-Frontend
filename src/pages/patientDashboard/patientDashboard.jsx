@@ -122,7 +122,10 @@ function PatientDashboard() {
   }, []);
 
   useEffect(() => {
-    if (todayAppointmentList.length > 0) {
+    
+    if (todayAppointmentList.length > 0 && doctorsList.length>0 && doctorNo) {
+      setLoading(true)
+      
       setDoctorDetails(getDoctorDetails(doctorNo)); //----------DOCTOR DETAILS FOR PROFILE CARD ADDED TO STATE----------------------//
 
       const newArray = todayAppointmentList.filter(
@@ -133,9 +136,11 @@ function PatientDashboard() {
 
       setTodayAppointment(newArray); //-------------------SETS THE QUEUE IF THERE IS AN APPOINTMENT TODAY---------------------//
 
-      setIsAnyAppointment(true); //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
+    
+      setIsAnyAppointment(true); 
+      setLoading(false)//------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
     }
-  }, [todayAppointmentList]);
+  }, [todayAppointmentList,doctorsList]);
 
   useEffect(() => {
     setLoading(false);
