@@ -310,6 +310,7 @@ function DoctorDashboard() {
                         applist.map((item,index) => {
 
                           return <WaitingListItem
+                            key={index}
                             serialNo={item.serialno}
                             time={`${convertTo12(item.aptime.start)} - ${convertTo12(
                              item.aptime.end
