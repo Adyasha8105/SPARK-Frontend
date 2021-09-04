@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import DoctorProfileCard from "../../components/DoctorProfileCard.jsx";
@@ -9,7 +11,6 @@ import { HiLogout } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDoctorsAction } from "../../redux/actions/doctorsAction";
 import {
-  cancelAppointmentAction,
   createAppointmentAction,
   getAppointmentAction,
   getTodayAppointmentAction,
@@ -25,7 +26,7 @@ import DashBoardAnimation from "../../images/DashboardAnimation.json";
 import SideBarAnimation from "../../images/SideBarAnimation.json";
 import BookAppointmentAnimation from "../../images/BookAppointmentAnimation.json";
 import { MdDashboard, MdFolder, MdPerson } from "react-icons/all";
-import { addTime, convertTo12 } from "../../utils/time";
+import { convertTo12 } from "../../utils/time";
 
 function PatientDashboard() {
   const currentUser = useSelector((state) => state.authReducer);
@@ -66,13 +67,12 @@ function PatientDashboard() {
   // TODO: use these for the cancel appointment popup too
   const [appointmentDate, setAppointmentDate] = useState("");
   const [doctor, setDoctor] = useState(0);
-  const [doctorNo,setDoctorNo] = useState(null)
+  const [doctorNo, setDoctorNo] = useState(null);
   const [doctorDetails, setDoctorDetails] = useState({});
   const [symptoms, setSymptoms] = useState("");
   const [type, setType] = useState("appointment");
   const [error, setError] = useState(false);
   const [isAnyAppointment, setIsAnyAppointment] = useState(false); //TO CHECK IF THERE IS ANY QUEUE TODAY
-
 
   // const [todayDoctor, setTodayDoctor] = useState(null);
   const doctorsDropdownList = [];
@@ -86,10 +86,6 @@ function PatientDashboard() {
 
   const dispatch = useDispatch();
   const { date, time } = DateTime();
-
- 
-
-  
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalStyle = {
@@ -130,10 +126,8 @@ function PatientDashboard() {
 
   useEffect(() => {
     if (todayAppointmentList.length > 0) {
-
       setDoctorDetails(getDoctorDetails(doctorNo)); //----------DOCTOR DETAILS FOR PROFILE CARD ADDED TO STATE----------------------//
 
-      
       const newArray = todayAppointmentList.filter(
         (item) => item.status !== "completed"
       );
@@ -143,8 +137,7 @@ function PatientDashboard() {
 
       setTodayAppointment(newArray); //-------------------SETS THE QUEUE IF THERE IS AN APPOINTMENT TODAY---------------------//
 
-      setIsAnyAppointment(true);  //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
-
+      setIsAnyAppointment(true); //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
     }
   }, [todayAppointmentList]);
 
@@ -160,11 +153,9 @@ function PatientDashboard() {
     const AllAppointment = appointmentDetails(todayDate);
 
     if (AllAppointment.length > 0) {
-     
       const doctorPhoneno = AllAppointment[0].dphoneno;
 
-      setDoctorNo(doctorPhoneno)
- 
+      setDoctorNo(doctorPhoneno);
 
       // setTodayDoctor(doctorPhoneno);
       dispatch(
@@ -185,7 +176,7 @@ function PatientDashboard() {
 
   const handleLogout = () => {
     setLoading(true);
-    if (currentUser.type == "doctor")
+    if (currentUser.type === "doctor")
       dispatch(doctorLogout(currentUser.access, currentUser.phoneno));
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
   };
@@ -195,13 +186,9 @@ function PatientDashboard() {
     const selectedDoctor = doctorsList?.filter(
       (doctor) => doctor.phoneno === phone
     );
-    if(selectedDoctor?.length>0)
-    return selectedDoctor[0];
-    else
-    return null
-    
+    if (selectedDoctor?.length > 0) return selectedDoctor[0];
+    else return null;
   };
-
 
   const appointmentDetails = (date) => {
     //-------------------FETCHES TODAY'S APPOINTMENT ,IF THERE, FROM LIST OF APPOINTMENT FOR PATIENT-------------------//
@@ -446,10 +433,8 @@ function PatientDashboard() {
             </p>
           </div>
           <section className="grid p-6">
-          <span className="text-sm md:hidden mr-6 text-dark">{date}</span>
-              <span className="text-sm md:hidden md:mr-12 text-dark">
-                {time}
-              </span>
+            <span className="text-sm md:hidden mr-6 text-dark">{date}</span>
+            <span className="text-sm md:hidden md:mr-12 text-dark">{time}</span>
             <h1 className="lg:text-4xl md:text-3xl text-xl font-semibold mt-4 text-dark">
               Welcome, {userName.name}
             </h1>
@@ -469,7 +454,7 @@ function PatientDashboard() {
             </p>
           </section>
 
-          {isAnyAppointment  ? (
+          {isAnyAppointment ? (
             <section className="flex flex-wrap">
               <div className="w-full lg:w-2/3">
                 <div className="flex flex-col w-full p-6">
@@ -485,23 +470,20 @@ function PatientDashboard() {
                   </div>
                   <div className="flex flex-row items-center mt-8">
                     <div className="flex flex-col my-2 space-y-4 w-full overflow-x-auto">
-                      {
-                        todayAppointment.map((item,index) => 
+                      {todayAppointment.map((item, index) => (
                         <WaitingListItem
-                            key={index}
-                            serialNo={item.serialno}
-                            time={`${convertTo12(item.aptime.start)} - ${convertTo12(
-                              item.aptime.end
-                            )}`}
-                            isUser={
-                              item.pphoneno === currentUser.phoneno
-                                ? true
-                                : false
-                            }
-                            date={date}
-                            appointmentStatus={item.status}
-                          />)
-                      }
+                          key={index}
+                          serialNo={item.serialno}
+                          time={`${convertTo12(
+                            item.aptime.start
+                          )} - ${convertTo12(item.aptime.end)}`}
+                          isUser={
+                            item.pphoneno === currentUser.phoneno ? true : false
+                          }
+                          date={date}
+                          appointmentStatus={item.status}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>

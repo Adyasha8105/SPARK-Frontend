@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FiFastForward } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 
 function WaitingListItemButton({
   appointmentStatus,
@@ -16,9 +16,6 @@ function WaitingListItemButton({
   let buttonColor;
   let buttonTextColor;
   let buttonBorderColor;
-
-
-  const currentUser = useSelector(state => state.authReducer);
 
   const [clicked, setClicked] = useState(false);
 
