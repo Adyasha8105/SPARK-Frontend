@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import DoctorProfileCard from "../../components/DoctorProfileCard.jsx";
@@ -11,6 +9,7 @@ import { HiLogout } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDoctorsAction } from "../../redux/actions/doctorsAction";
 import {
+  cancelAppointmentAction,
   createAppointmentAction,
   getAppointmentAction,
   getTodayAppointmentAction,
@@ -67,11 +66,13 @@ function PatientDashboard() {
   // TODO: use these for the cancel appointment popup too
   const [appointmentDate, setAppointmentDate] = useState("");
   const [doctor, setDoctor] = useState(0);
+  const [doctorNo,setDoctorNo] = useState(null)
   const [doctorDetails, setDoctorDetails] = useState({});
   const [symptoms, setSymptoms] = useState("");
   const [type, setType] = useState("appointment");
   const [error, setError] = useState(false);
   const [isAnyAppointment, setIsAnyAppointment] = useState(false); //TO CHECK IF THERE IS ANY QUEUE TODAY
+
 
   // const [todayDoctor, setTodayDoctor] = useState(null);
   const doctorsDropdownList = [];
@@ -86,57 +87,9 @@ function PatientDashboard() {
   const dispatch = useDispatch();
   const { date, time } = DateTime();
 
-  // Waiting list item time ----------------------------------------------------------------------------------------------------------//
+ 
 
-  const waitingListTimeEnd = [];
-  const waitingListTimeStart = [];
-
-  console.log("waitinglist", waitingListTimeStart);
-
-  var startTime = doctorDetails.workinghrs
-    ? doctorDetails.workinghrs.start
-    : "";
-  waitingListTimeStart.push(startTime.slice(0, -3));
-
-  // hardcoded value: 50
-  for (var i = 0; i < 50; i++) {
-    if (startTime.length === 4) {
-      startTime = "0" + startTime;
-    }
-    waitingListTimeEnd.push(addTime(startTime));
-    startTime = addTime(startTime);
-    if (i < 49) {
-      waitingListTimeStart.push(startTime);
-    }
-  }
-
-  // ----------------------------------------------------------------------------------------------------------------------//
-  const waitingListComponents = [];
-
-  const calculateAppointmentStatus = (id) => {
-    if (id === 1) return "Ongoing";
-    else if (id === 2) return "Next";
-    else return "Queued";
-  };
-  for (var j = 1; j <= todayAppointment.length; j++) {
-    console.log("TIME", convertTo12(waitingListTimeEnd[j]));
-    waitingListComponents.push(
-      <WaitingListItem
-        key={j}
-        serialNo={todayAppointment[j - 1].serialno}
-        time={`${convertTo12(waitingListTimeStart[j])} - ${convertTo12(
-          waitingListTimeEnd[j]
-        )}`}
-        isUser={
-          todayAppointment[j - 1].pphoneno === currentUser.phoneno
-            ? true
-            : false
-        }
-        date={date}
-        appointmentStatus={calculateAppointmentStatus(j)}
-      />
-    );
-  }
+  
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalStyle = {
@@ -177,14 +130,21 @@ function PatientDashboard() {
 
   useEffect(() => {
     if (todayAppointmentList.length > 0) {
+
+      setDoctorDetails(getDoctorDetails(doctorNo)); //----------DOCTOR DETAILS FOR PROFILE CARD ADDED TO STATE----------------------//
+
+      
       const newArray = todayAppointmentList.filter(
         (item) => item.status !== "completed"
       );
-      newArray[0].status = "ongoing";
-      if (newArray.length > 1) newArray[1].status = "upcoming";
+      newArray[0].status = "Ongoing";
+      if (newArray.length > 1) newArray[1].status = "Upcoming";
       console.log("NEWARRAY", newArray);
 
       setTodayAppointment(newArray); //-------------------SETS THE QUEUE IF THERE IS AN APPOINTMENT TODAY---------------------//
+
+      setIsAnyAppointment(true);  //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
+
     }
   }, [todayAppointmentList]);
 
@@ -200,12 +160,11 @@ function PatientDashboard() {
     const AllAppointment = appointmentDetails(todayDate);
 
     if (AllAppointment.length > 0) {
-      console.log(AllAppointment);
+     
       const doctorPhoneno = AllAppointment[0].dphoneno;
 
-      setDoctorDetails(getDoctorDetails(doctorPhoneno)); //----------DOCTOR DETAILS FOR PROFILE CARD ADDED TO STATE----------------------//
-
-      setIsAnyAppointment(true); //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
+      setDoctorNo(doctorPhoneno)
+ 
 
       // setTodayDoctor(doctorPhoneno);
       dispatch(
@@ -226,7 +185,7 @@ function PatientDashboard() {
 
   const handleLogout = () => {
     setLoading(true);
-    if (currentUser.type === "doctor")
+    if (currentUser.type == "doctor")
       dispatch(doctorLogout(currentUser.access, currentUser.phoneno));
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
   };
@@ -236,15 +195,13 @@ function PatientDashboard() {
     const selectedDoctor = doctorsList?.filter(
       (doctor) => doctor.phoneno === phone
     );
-    if (selectedDoctor?.length > 0) return selectedDoctor[0];
-    else return null;
+    if(selectedDoctor?.length>0)
+    return selectedDoctor[0];
+    else
+    return null
+    
   };
 
-  // TODO: use this to populate the doctor profile card
-  // const doctorCardData = () => {
-  //   const dphone = appointmentLis[appointmentList.length - 1].dphoneno;
-  //   return getDoctorDetails(dphone);
-  // };
 
   const appointmentDetails = (date) => {
     //-------------------FETCHES TODAY'S APPOINTMENT ,IF THERE, FROM LIST OF APPOINTMENT FOR PATIENT-------------------//
@@ -489,18 +446,20 @@ function PatientDashboard() {
             </p>
           </div>
           <section className="grid p-6">
-            <span className="text-sm md:hidden mr-6 text-dark">{date}</span>
-            <span className="text-sm md:hidden md:mr-12 text-dark">{time}</span>
+          <span className="text-sm md:hidden mr-6 text-dark">{date}</span>
+              <span className="text-sm md:hidden md:mr-12 text-dark">
+                {time}
+              </span>
             <h1 className="lg:text-4xl md:text-3xl text-xl font-semibold mt-4 text-dark">
               Welcome, {userName.name}
             </h1>
             <h4 className="md:text-lg text-md text-gray-600 mt-3">
               You have{" "}
               {appointmentList.length < 1 ? "no" : appointmentList.length}{" "}
-              appointments scheduled. For details check&nbsp;
-              <span onClick={handleInventory} className="cursor-pointer underline">
-                Inventory
-              </span>
+              appointments scheduled for{" "}
+              {appointmentList.length < 1
+                ? ""
+                : appointmentList[appointmentList.length - 1].apdate}
               .
             </h4>
             <p className="text-gray-400 pt-1 text-md">
@@ -510,7 +469,7 @@ function PatientDashboard() {
             </p>
           </section>
 
-          {appointmentList.length > 0 ? (
+          {isAnyAppointment  ? (
             <section className="flex flex-wrap">
               <div className="w-full lg:w-2/3">
                 <div className="flex flex-col w-full p-6">
@@ -526,7 +485,23 @@ function PatientDashboard() {
                   </div>
                   <div className="flex flex-row items-center mt-8">
                     <div className="flex flex-col my-2 space-y-4 w-full overflow-x-auto">
-                      {waitingListComponents}
+                      {
+                        todayAppointment.map((item,index) => 
+                        <WaitingListItem
+                            key={index}
+                            serialNo={item.serialno}
+                            time={`${convertTo12(item.aptime.start)} - ${convertTo12(
+                              item.aptime.end
+                            )}`}
+                            isUser={
+                              item.pphoneno === currentUser.phoneno
+                                ? true
+                                : false
+                            }
+                            date={date}
+                            appointmentStatus={item.status}
+                          />)
+                      }
                     </div>
                   </div>
                 </div>

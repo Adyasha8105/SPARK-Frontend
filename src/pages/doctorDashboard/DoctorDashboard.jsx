@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import PatientProfileCard from "../../components/PatientProfileCard.jsx";
@@ -16,7 +14,7 @@ import {
   getDoctorProfile,
   getAllPatients,
 } from "../../redux/actions/getUserAction.js";
-import { getAppointmentAction } from "../../redux/actions/appointmentAction.js";
+import { getAppointmentAction, getTodayAppointmentAction, updateAppointmentAction } from "../../redux/actions/appointmentAction.js";
 import { FadeLoader } from "react-spinners";
 import DateTime from "../../components/DateTime.js";
 import SideBarAnimation from "../../images/SideBarAnimation.json";
@@ -27,91 +25,121 @@ import { addTime, convertTo12 } from "../../utils/time";
 import { cancelAppointmentAction } from "../../redux/actions/appointmentAction";
 
 function DoctorDashboard() {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.authReducer);
   const currentPatient = useSelector((state) => state.patientReducer);
   const currentUserDetails = useSelector((state) => state.profileReducer);
+  var appointmentList = useSelector((state) => state.todayAppointmentReducer.appointments);
+  const isUpdated = useSelector((state) => state.todayAppointmentReducer.updated)
+  const [applist,setApplist] = useState([]);
+  const [latestPatient,setLatestPatient] = useState();
+  const dispatch = useDispatch();
   const history = useHistory();
+
+
   const [loading, setLoading] = useState(true);
-  var appointmentList = useSelector(
-    (state) => state.todayAppointmentReducer.appointments
-  );
+
 
   const { date, time } = DateTime();
 
-  var waitingListTimeEnd = [];
-  var waitingListTimeStart = [];
 
-  var startTime = currentUserDetails.workingHrs
-    ? currentUserDetails.workingHrs.start
-    : "";
-  waitingListTimeStart.push(startTime.slice(0, -3));
 
-  // hardcoded value: 50
-  for (var i = 0; i < 50; i++) {
-    if (startTime.length === 4) {
-      startTime = "0" + startTime;
+
+
+
+
+
+
+  //--------------COMPONENTS MOUNT THEN THIS IS CALLED--------------------------------------------------------------------//
+  useEffect(() => {
+
+    setLoading(true);
+    fetchAllAppointments();
+    if (!currentUser.isLoggedIn) history.push("/");
+    if (currentUser.type === "patient") history.goBack();
+    if (currentUser.isLoggedIn && currentUser.isRegistered) {
+      dispatch(getDoctorProfile(currentUser.phoneno));
     }
-    waitingListTimeEnd.push(addTime(startTime));
-    startTime = addTime(startTime);
-    if (i < 49) {
-      waitingListTimeStart.push(startTime);
-    }
-  }
+  }, []);
 
-  const waitingListComponents = [];
+
+  //---------------APPOINTMENT LIST UPDATED THEN THIS IS CALLED----------------------------------------------------------//
+  useEffect(()=>{
+    fetchAllAppointments();
+  },[isUpdated])
+
+
+  useEffect(()=>{
+    
+    if(appointmentList.length>0) {
+      getCurrentPatientDetails();
+      const newArray = [...appointmentList];
+      console.log("NNNNNNNNNNNNNNEEEEEEEEEEEEEWWWWWWWWWWWWWWW",newArray)
+      if(newArray.length==1)
+      newArray[0].status="Next";
+      else
+      newArray[0].status="Ongoing";
+      if (newArray.length > 1) newArray[1].status = "Next";
+      setApplist([...newArray]);
+    }
+   
+  },[appointmentList])
+
+
+  //------------------AUTHUSER CHANGES OR CURRENT PATIENT CHANGES THEN THIS IS CALLED-------------------------------------//
+  useEffect(() => {
+    setLoading(false);
+    if(currentPatient.name!="")
+    setLatestPatient(currentPatient)
+    if (currentUser.isLogout) history.push("/");
+  }, [currentUser, currentPatient]);
+
+
+
+
+
+  // ----------------This should be called once AppointmentList is populated-----------------------------------------------//
+
 
   const getCurrentPatientDetails = () => {
     if (appointmentList.length > 0) {
+      console.log(appointmentList[0].pphoneno)
       dispatch(getAllPatients(appointmentList[0].pphoneno));
     } else {
       setLoading(false);
     }
   };
 
-  const calculateAppointmentStatus = (id) => {
-    if (appointmentList.length > 1) {
-      if (id === 1) return "Ongoing";
-      else if (id === 2) return "Next";
-      else return "Queued";
-    } else if (appointmentList.length === 1) {
-      return "Next";
-    }
-  };
 
-  for (var j = 1; i <= appointmentList.length; j++) {
-    waitingListComponents.push(
-      <WaitingListItem
-        serialNo={appointmentList[j - 1].serialno}
-        time={`${convertTo12(waitingListTimeStart[j - 1])} - ${convertTo12(
-          waitingListTimeEnd[j - 1]
-        )}`}
-        date={date}
-        // eslint-disable-next-line no-loop-func
-        onClickFunc={() => {
-          handleCancelAppointment();
-          waitingListTimeEnd = waitingListTimeEnd.slice(1);
-          waitingListTimeStart = waitingListTimeStart.slice(1);
-          console.log("Helo");
-        }}
-        appointmentStatus={calculateAppointmentStatus(i)}
-      />
-    );
-  }
 
-  const handleCancelAppointment = () => {
+  
+  const handleUpdateAppointment = () => {
     // to remove the "Z" at the end of createdat
+
     var formatted = appointmentList[0].createdat;
     formatted = formatted.slice(0, -1);
 
-    const cancelData = {
-      pphoneno: currentPatient.phoneno,
-      dphoneno: currentUser.phoneno,
-      aptdate: appointmentList[0].apdate,
-      createdat: formatted,
-    };
-    dispatch(cancelAppointmentAction(cancelData));
+    if(!latestPatient)
+    console.log("NO LATEST PATIENT");
+    else
+    {
+      const updateData = {
+        pphoneno: currentPatient.phoneno,
+        dphoneno: currentUser.phoneno,
+        apdate: appointmentList[0].apdate,
+        createdat: formatted,
+        status: "completed"
+      };
+  
+      dispatch(updateAppointmentAction(updateData));
+  
+      
+    }
+    
+
   };
+
+  //---------------------------------------Piyush code ended---------------------------------------//
+
 
   const fetchAllAppointments = () => {
     const data = {
@@ -119,11 +147,10 @@ function DoctorDashboard() {
       status: "queued",
       forUser: "doctor",
     };
-    dispatch(getAppointmentAction(data));
 
-    appointmentList = appointmentList.filter(
-      (appointment) => appointment.dphoneno === currentUser.phoneno
-    );
+    dispatch(getTodayAppointmentAction(data));
+
+  
 
     console.log("APP LIST", appointmentList);
   };
@@ -141,36 +168,15 @@ function DoctorDashboard() {
     history.push("/doctor-dashboard");
   };
 
-  useEffect(() => {
-    if (!currentUser.isLoggedIn) history.push("/");
-    if (currentUser.type === "patient") history.goBack();
-    if (currentUser.isLoggedIn && currentUser.isRegistered) {
-      dispatch(getDoctorProfile(currentUser.phoneno));
-    }
-  }, []);
 
-  useEffect(() => {
-    setLoading(false);
-    if (currentUser.isLogout) history.push("/");
-  }, [currentUser, currentPatient]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetchAllAppointments();
-    getCurrentPatientDetails();
-  }, []);
 
   const handleLogout = (e) => {
+    setLoading(true)
     if (currentUser.type === "doctor")
       dispatch(doctorLogout(currentUser.access, currentUser.phoneno));
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
   };
 
-  useEffect(() => {
-    setLoading(true);
-    fetchAllAppointments();
-    getCurrentPatientDetails();
-  }, []);
   if (loading) {
     return (
       <div
@@ -300,7 +306,22 @@ function DoctorDashboard() {
                   </div>
                   <div className="flex flex-row items-center mt-8">
                     <div className="flex flex-col my-2 space-y-4 w-full overflow-x-auto">
-                      {waitingListComponents}
+                      {
+                        applist.map((item,index) => {
+
+                          return <WaitingListItem
+                            serialNo={item.serialno}
+                            time={`${convertTo12(item.aptime.start)} - ${convertTo12(
+                             item.aptime.end
+                            )}`}
+                            date={date}
+                            onClickFunc={() => {
+                              handleUpdateAppointment();
+                            }}
+                            appointmentStatus={item.status}
+                          />
+                        })
+                      }
                     </div>
                   </div>
                 </div>
