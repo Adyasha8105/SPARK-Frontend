@@ -3,14 +3,15 @@
 </p>
 <h1 align="center">Spark Healthlines</h1>
 
+
 <p align="center">
   <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/><img alt="Redux" src="https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/cassandra-%231287B1.svg?style=for-the-badge&logo=apache-cassandra&logoColor=white"/><img alt="NodeJS" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white"/><img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/> 
 </p>
 
 
-#### A Virtual Waiting Queue App for Medicals
+#### A Virtual Waiting Queue App for Medical 🩺
 
-Spark Healthlines is a modern-day designed, enhanced user experience, multi-functional, mobile ready app developed to give in-person patients the freedom to wait for their turn privately in their car—or wherever they choose—rather than confining them to a stuffy, crowded waiting room alongside new germs and potential infections and facilitating a smooth check-in process for healthcare visits.
+Spark Healthlines is a modern-day designed, enhanced user experience, multi-functional, mobile ready app developed to give in-person patients the freedom to wait for their turn privately in their car—or wherever they choose—rather than confining them to a stuffy, crowded waiting room alongside new germs and potential infections and facilitating a smooth check-in process for healthcare visits 🧑🏻‍⚕️
 
 > Traditional waiting rooms that require patients to touch shared surfaces
 > and breathe shared air are beyond uncomfortable—they can be unsafe.
