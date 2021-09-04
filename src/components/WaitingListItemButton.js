@@ -32,7 +32,7 @@ function WaitingListItemButton({
       else onClickFunc();
     }
   }, [clicked]);
-  if (appointmentStatus === "Next" || appointmentStatus === "Upcoming") {
+  if (appointmentStatus === "Next" || appointmentStatus === "Upcoming" || appointmentStatus === "Cancel") {
     buttonColor = "bg-red-400";
     buttonTextColor = "text-white";
     buttonBorderColor = "border-white";
