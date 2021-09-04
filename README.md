@@ -27,6 +27,7 @@
 
 > Traditional waiting rooms that require patients to touch shared surfaces
 > and breathe shared air are beyond uncomfortable—they can be unsafe.
+> It is not only incovinient for the patients to stand in long queues but also the crowd prove to be a breeding ground for germs and potential infections.
 
 <p align="center"><img alt="crowd" width="400px" src="./src/images/crowd.png"></p>
 
