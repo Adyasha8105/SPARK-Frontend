@@ -63,7 +63,7 @@ function DoctorProfile() {
   //     : registeredUser.specializations[0];
 
   useEffect(() => {
-    if(!authUser.isLoggedIn)
+    if(!authUser.isSignedUp)
       history.push('/');
     if(authUser.type==='patient')
       history.goBack();
