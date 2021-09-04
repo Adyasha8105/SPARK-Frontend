@@ -27,11 +27,13 @@
 
 > Traditional waiting rooms that require patients to touch shared surfaces
 > and breathe shared air are beyond uncomfortable—they can be unsafe.
-> Virtual waiting rooms enable social distancing to
-> support a better patient experience and better outcomes.
-> A virtual waiting room helps you
-> prevent your healthcare organization from being associated with pesky sounds, smells, people,
-> and boredom that can easily be avoided.
+
+<img alt="crowd"  src="./src/images/crowd.png">
+
+#### Our Solution 
+
+Virtual waiting rooms enable social distancing to support a better patient experience and better outcomes.
+A virtual waiting room helps you prevent your healthcare organization from being associated with pesky sounds, smells, people, and boredom that can easily be avoided.
 
 ### Highlights
 
@@ -71,7 +73,7 @@
 - After completion of the visit of a patient, the doctor needs to click on the next button which shall proceed the virtual queue one step ahead.
 - This would update the virtual queue and patients shall know their current position and estimated visiting time.
 
-## Features that we are planning to add:
+## Features that we are planning to add in future:
 
 - Registrations for hospitals as well.
 - Send emails and notifications to patients about the updates in read-time.
@@ -80,12 +82,13 @@
 - Dynamically display the stats of the appointments in the doctor dashboard.
 And many more.
 
-## License
-
-Distributed under the GNU License. See `LICENSE.md` for more information.
 
 ## Geeks behind this
 
 |<img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">|
 |----------------------------|--------|----------------------------|--------|
-|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>|  
+|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>| 
+
+## License
+
+Distributed under the GNU License. See `LICENSE.md` for more information.
