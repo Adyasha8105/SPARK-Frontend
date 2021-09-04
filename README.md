@@ -28,7 +28,7 @@
 > Traditional waiting rooms that require patients to touch shared surfaces
 > and breathe shared air are beyond uncomfortable—they can be unsafe.
 
-<img alt="crowd"  src="./src/images/crowd.png">
+<p align="center"><img alt="crowd" width="400px" src="./src/images/crowd.png"></p>
 
 #### Our Solution 
 
