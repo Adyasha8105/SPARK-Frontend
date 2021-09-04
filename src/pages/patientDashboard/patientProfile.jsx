@@ -37,18 +37,10 @@ function PatientProfile() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const currentUser = useSelector((state) => state.authReducer);
-  // useEffect(()=>{
-  //   console.log(authUser)
 
-  //   if(!authUser.isSignedup)
-  //     history.push('/')
-  // },[]) // Shree you can comment this out if needed for testing purposes
   useEffect(() => {
-    console.log("AUTHHHH USERrrrr",authUser)
-    if(!authUser.isSignedUp)
-        history.push('/');
-    if(authUser.type==='doctor')
-        history.goBack();
+    if (!authUser.isSignedUp) history.push("/");
+    if (authUser.type === "doctor") history.goBack();
     setIsUpdated(false);
     if (registeredUser.name) {
       setIsAlreadyRegistered(true);
@@ -66,11 +58,9 @@ function PatientProfile() {
   }, []);
 
   useEffect(() => {
-    console.log("HELLO");
     setLoading(false);
     if (isUpdated && !registeredUser.errorMessage) history.push("/dashboard");
     else if (registeredUser.isLoading) console.log("Loading");
-    //Shree please get some loader for this
     else if (registeredUser.errorMessage)
       setMessage(registeredUser.errorMessage);
     else if (registeredUser.registered && !authUser.isLoggedIn)
@@ -80,8 +70,6 @@ function PatientProfile() {
           type: "patient",
         },
       });
-    // else if (registeredUser.isRegistered && authUser.isLoggedIn)
-    //   history.push("/dashboard");
   }, [registeredUser]);
 
   const handleProfile = () => {
@@ -104,7 +92,6 @@ function PatientProfile() {
   };
 
   const handleSubmit = async (e) => {
-    console.log("Submitted");
     e.preventDefault();
     setLoading(true);
     if (!isAlreadyRegistered)

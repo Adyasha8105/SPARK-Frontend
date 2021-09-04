@@ -20,7 +20,6 @@ import {
 } from "../../utils/url";
 
 export const SignupPatient = async (data) => {
-  console.log("SIGNUP DATA", data);
   return new Promise(async (resolve, reject) => {
     await fetch(`${SIGNUP_PATIENT_URL}`, {
       method: "POST",
@@ -31,7 +30,6 @@ export const SignupPatient = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("SIGNUP RESULT", result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       })
@@ -50,7 +48,6 @@ export const SignupDoctor = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("SIGNUP DOCTOR RESULT", result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       })
@@ -59,7 +56,6 @@ export const SignupDoctor = async (data) => {
 };
 
 export const loginPatient = async (data) => {
-  console.log(data);
   return new Promise(async (resolve, reject) => {
     await fetch(`${LOGIN_PATIENT_URL}`, {
       method: "POST",
@@ -70,7 +66,6 @@ export const loginPatient = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.success) resolve(result.response.data);
         else reject(result.err);
       })
@@ -79,7 +74,6 @@ export const loginPatient = async (data) => {
 };
 
 export const loginDoctor = async (data) => {
-  console.log(data);
   return new Promise(async (resolve, reject) => {
     await fetch(`${LOGIN_DOCTOR_URL}`, {
       method: "POST",
@@ -90,7 +84,6 @@ export const loginDoctor = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.success) resolve(result.response.data);
         else reject(result.err);
       });
@@ -112,7 +105,6 @@ export const createPatient = async (data) => {
     bloodGp: data.bloodGp,
     email: data.email,
   };
-  console.log(bodyObj);
   return new Promise(async (resolve, reject) => {
     await fetch(`${CREATE_PATIENT_URL}`, {
       method: "POST",
@@ -123,7 +115,6 @@ export const createPatient = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       })
@@ -132,7 +123,6 @@ export const createPatient = async (data) => {
 };
 
 export const updatePatient = async (data) => {
-  console.log("PAtient Update Data", data);
 
   return new Promise(async (resolve, reject) => {
     await fetch(`${UPDATE_PATIENT_URL}`, {
@@ -154,7 +144,6 @@ export const updatePatient = async (data) => {
 };
 
 export const updateDoctor = async (data) => {
-  console.log("Doctor Update Data", data);
 
   return new Promise(async (resolve, reject) => {
     await fetch(`${UPDATE_DOCTOR_URL}`, {
@@ -176,7 +165,6 @@ export const updateDoctor = async (data) => {
 };
 
 export const createDoctor = async (data) => {
-  console.log("DOCTOR DATA", data);
   return new Promise(async (resolve, reject) => {
     await fetch(`${CREATE_DOCTOR_URL}`, {
       method: "POST",
@@ -187,7 +175,6 @@ export const createDoctor = async (data) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       })
@@ -233,7 +220,6 @@ export const logoutDoctor = async (data) => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log("LOGOUT DOCTOR", result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       });
@@ -250,7 +236,6 @@ export const getAllDoctors = async () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("DOCTOR ALL ",result)
         if(result.success)
         resolve(result.response);
         else
@@ -261,7 +246,6 @@ export const getAllDoctors = async () => {
 };
 
 export const getDoctor = async (phoneno) => {
-  console.log("IN DOCTOR PHONE", phoneno);
   return new Promise(async (resolve, reject) => {
     await fetch(
       `${GET_DOCTOR}?` +
@@ -285,7 +269,6 @@ export const getDoctor = async (phoneno) => {
 };
 
 export const getPatient = async (phoneno) => {
-  console.log("IN PATIENT PHONE", phoneno);
   return new Promise(async (resolve, reject) => {
     await fetch(
       `${GET_PATIENT}?` +
@@ -300,7 +283,6 @@ export const getPatient = async (phoneno) => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log("PatientDetails",result);
         if (result.success) resolve(result.response);
         else reject(result.err);
       })
@@ -330,8 +312,6 @@ export const createAppointment = async (data) => {
 
 export const getAppointment = async (data) => {
   return new Promise(async (resolve, reject) => {
-
-    console.log("GET APPOINTMENT",data)
     if (data.forUser === "doctor") {
       const url = data.status?GET_AP_URL +
       `all?forUser=doctor&status=${data.status}&dphoneNo=${data.dphoneNo}`:
@@ -348,7 +328,6 @@ export const getAppointment = async (data) => {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result)
           if(result.success)
           resolve(result);
           else
@@ -396,7 +375,6 @@ export const getTodayAppointment = async (data) => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result)
         if(result.success)
         resolve(result);
         else

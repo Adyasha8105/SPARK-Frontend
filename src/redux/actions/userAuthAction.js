@@ -45,11 +45,6 @@ const userLogoutFailure = (payload) => ({
 
 export const cleanStateAction = () => {
   return (dispatch) => {
-    // testRoute().then(async (result) => {
-    //   await dispatch({
-    //   type:ActionTypes.CLEAN_STATE
-    //   })
-    // }).catch(err=>console.log(err))
     dispatch({
       type: ActionTypes.CLEAN_STATE,
     });
@@ -61,7 +56,6 @@ export const patientLogin = (data) => {
       .then(async (user) => {
         dispatch(userLoginStart);
         await setTimeout(() => {}, 3000);
-        console.log(user);
         const payload = {
           phoneno: user.phoneno,
           access: user.accesstoken || null,
@@ -73,7 +67,6 @@ export const patientLogin = (data) => {
         dispatch(userLoginSuccess(payload));
       })
       .catch((err) => {
-        console.log("Error", err);
         dispatch(userLoginFailure(err));
       });
   };
@@ -81,11 +74,9 @@ export const patientLogin = (data) => {
 
 export const doctorLogin = (data) => {
   return (dispatch) => {
-    console.log("IN LOGIN");
     dispatch(userLoginStart);
     loginDoctor(data)
       .then((user) => {
-        console.log(user);
         const payload = {
           phoneno: user.phoneno,
           access: user.accesstoken || null,
@@ -97,7 +88,6 @@ export const doctorLogin = (data) => {
         dispatch(userLoginSuccess(payload));
       })
       .catch((err) => {
-        console.log("Error", err);
         dispatch(userLoginFailure(err));
       });
   };
@@ -105,7 +95,6 @@ export const doctorLogin = (data) => {
 
 export const patientSignUp = (data) => {
   return (dispatch) => {
-    console.log("IN SIGNUP");
     dispatch(userSignupStart);
     SignupPatient(data)
       .then((user) => {
@@ -121,7 +110,6 @@ export const patientSignUp = (data) => {
         dispatch(userSignupSuccess(payload));
       })
       .catch((err) => {
-        console.log("Error", err);
         dispatch(userSignupFailure(err));
       });
   };
@@ -163,11 +151,8 @@ export const patientLogout = (token, phoneno) => {
 
 export const doctorLogout = (token, phoneno) => {
   return (dispatch) => {
-    console.log("DOCTOR LOGOUT");
-
     logoutDoctor({ token, phoneno })
       .then((response) => {
-        console.log(response);
         dispatch(userLogoutSuccess(response));
       })
       .catch((err) => {

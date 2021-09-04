@@ -15,7 +15,6 @@ const doctorReducer = (state = initialState, action) => {
       };
     }
     case ActionTypes.GET_ALL_DOC: {
-      console.log(action.payload);
       return {
         ...state,
         doctors: action.payload,

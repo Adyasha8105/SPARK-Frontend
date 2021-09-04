@@ -85,7 +85,6 @@ function DoctorDashboard() {
 
   const getCurrentPatientDetails = () => {
     if (appointmentList.length > 0) {
-      console.log(appointmentList[0].pphoneno);
       dispatch(getAllPatients(appointmentList[0].pphoneno));
     } else {
       setLoading(false);
@@ -122,8 +121,6 @@ function DoctorDashboard() {
     };
 
     dispatch(getTodayAppointmentAction(data));
-
-    console.log("APP LIST", appointmentList);
   };
 
   const symptoms =

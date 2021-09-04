@@ -25,11 +25,9 @@ export default function SignUp(props) {
   const currentUser = useSelector((state) => state.authReducer);
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser.isLoggedIn) history.push("/dashboard");
   }, []);
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser.isLoginLoading) {
       console.log("LOADING");
     } else {

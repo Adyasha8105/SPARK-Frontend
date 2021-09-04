@@ -113,7 +113,6 @@ function PatientDashboard() {
     if (!currentUser.isLoggedIn) history.push("/");
     if (currentUser.type === "doctor") history.goBack();
     dispatch(getAllDoctorsAction()); //-------------DOCTOR LIST IS FILLED IN REDUCER---------------------//
-    console.log("Doctor appointmentList is Filled !!!!!!!!!!!!!!!");
     fetchAllAppointments();
 
     if (currentUser.isLoggedIn && currentUser.isRegistered) {
@@ -121,8 +120,6 @@ function PatientDashboard() {
     }
     setLoading(false);
   }, []);
-
-  console.log("TODAY APPOINTMENT LIST", todayAppointmentList);
 
   useEffect(() => {
     if (todayAppointmentList.length > 0) {
@@ -133,7 +130,6 @@ function PatientDashboard() {
       );
       newArray[0].status = "Ongoing";
       if (newArray.length > 1) newArray[1].status = "Upcoming";
-      console.log("NEWARRAY", newArray);
 
       setTodayAppointment(newArray); //-------------------SETS THE QUEUE IF THERE IS AN APPOINTMENT TODAY---------------------//
 
@@ -192,12 +188,9 @@ function PatientDashboard() {
 
   const appointmentDetails = (date) => {
     //-------------------FETCHES TODAY'S APPOINTMENT ,IF THERE, FROM LIST OF APPOINTMENT FOR PATIENT-------------------//
-    console.log("DATE", date);
-    console.log("APPOINTMENT LIST", appointmentList);
     const selectedAppointment = appointmentList.filter(
       (appointment) => appointment.apdate === date
     );
-    console.log("SELECTED APPOINTMENTS", selectedAppointment);
     return selectedAppointment;
   };
 
@@ -212,8 +205,6 @@ function PatientDashboard() {
         symptoms: symptoms,
         type: type,
       };
-      // console.log("Create appointment data");
-      // console.log(appointmentData);
       setLoading(true);
       dispatch(createAppointmentAction(appointmentData));
 
@@ -234,7 +225,6 @@ function PatientDashboard() {
       status: "queued",
       forUser: currentUser.type,
     };
-    console.log("Fetching appointment list");
     dispatch(getAppointmentAction(data));
   };
 
