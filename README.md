@@ -88,4 +88,4 @@ Distributed under the GNU License. See `LICENSE.md` for more information.
 
 |<img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">|
 |----------------------------|--------|----------------------------|--------|
-|<p align="center">[Piyush Pradhan](https://github.com/piyushpradhan)</p>|<p align="center">[Shree Mishra](https://github.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://github.com/Rupayan789)</p>|  
+|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>|  
