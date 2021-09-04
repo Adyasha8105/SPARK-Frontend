@@ -60,7 +60,7 @@ function WaitingListItemButton({
     <button 
       // disabled={currentUser.type==='patient'}
       onClick={() => {
-        if (appointmentStatus === "New Appointment" || appointmentStatus ==="cancel") setClicked(true);
+        if (appointmentStatus === "New Appointment" || appointmentStatus ==="Cancel") setClicked(true);
       }}
       className={`${buttonColor} ${buttonTextColor} ${PaddingButton} md:mt-0 mt-5 outline-none px-4 py-2 flex flex-row justify-center space-x-2 items-center border ${buttonBorderColor} rounded-md`}
     >
