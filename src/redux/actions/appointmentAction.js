@@ -48,16 +48,16 @@ export const getAppointmentAction = (data) => {
   };
 };
 
-export const updateAppoitmentAction = (data) => {
+export const updateAppointmentAction = (data) => {
   return (dispatch) => {
-    updateAppointment(data)
+    updateAppointment(JSON.stringify(data))
       .then((response) => {
         dispatch({
           type: ActionTypes.UPDATE_AP_START,
         });
         dispatch({
           type: ActionTypes.UPDATE_AP_SUCCESS,
-          payload: response,
+          payload: response.data,
         });
       })
       .catch((err) =>
@@ -102,14 +102,20 @@ export const getTodayAppointmentAction = (data) => {
       .then((result) => {
         dispatch({
           type: ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS,
-          payload: result,
+          payload: result.response,
         });
       })
       .catch((error) => {
+        if(!error.err)
         dispatch({
-          type: ActionTypes.GET_TODAY_APPOINTMENT_FAILURE,
-          payload: error,
+          type: ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS,
+          payload: [],
         });
+        else
+        dispatch({
+          type:ActionTypes.GET_TODAY_APPOINTMENT_FAILURE,
+          payload:error.err
+        })
       });
   };
 };

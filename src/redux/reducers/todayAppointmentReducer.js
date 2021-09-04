@@ -5,6 +5,7 @@ const initialState = {
   errMessage: null,
   errLogout: null,
   isLoading: false,
+  updated:false
 };
 
 const todayAppointmentReducer = (state = initialState, { type, payload }) => {
@@ -16,13 +17,18 @@ const todayAppointmentReducer = (state = initialState, { type, payload }) => {
       };
     }
     case ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS: {
-      const todayDate = new Date().toJSON().slice(0, 10);
-      const newArray = payload.response.filter(
-        (item) => item.apdate === todayDate
-      );
+      var newArray=[]
+      if(payload.length>0)
+      {
+        const todayDate = new Date().toJSON().slice(0, 10);
+        newArray = payload.filter(
+          (item) => item.apdate === todayDate
+        );
+      }
+      
       return {
         ...state,
-        appointments: payload.status === 200 ? newArray : state.appointments,
+        appointments: newArray
       };
     }
     case ActionTypes.GET_TODAY_APPOINTMENT_FAILURE:
@@ -30,6 +36,33 @@ const todayAppointmentReducer = (state = initialState, { type, payload }) => {
         ...state,
         errMessage: ActionTypes.payload,
       };
+
+    
+      case ActionTypes.UPDATE_AP_START:
+        return {
+          ...state,
+          isLoading: true,
+          updated:false,
+          errMessage: null,
+        };
+      case ActionTypes.UPDATE_AP_SUCCESS:
+        {
+          
+          return {
+          ...state,
+          updated:true
+        }
+        }
+        case ActionTypes.UPDATE_AP_FAILURE:
+          {
+            
+            return {
+            ...state,
+            updated:false,
+            errMessage:payload
+          }
+          }
+  
 
     case ActionTypes.LOGOUT_SUCCESS:
       return {

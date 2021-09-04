@@ -384,7 +384,7 @@ export const getTodayAppointment = async (data) => {
   return new Promise(async (resolve,reject) => {
 
     const url = GET_AP_URL +
-    `all?forUser=doctor&dphoneNo=${data.dphoneNo}`
+    `all?forUser=doctor&dphoneNo=${data.dphoneNo}&status=${data.status}`
     await fetch(
       url,
       {
@@ -400,7 +400,7 @@ export const getTodayAppointment = async (data) => {
         if(result.success)
         resolve(result);
         else
-        reject(result.response)
+        reject(result)
       })
       .catch((err) => reject(err));
 
@@ -429,7 +429,7 @@ export const cancelAppointment = async (data) => {
 export const updateAppointment = async (data) => {
   return new Promise(async (resolve,reject) => {
     await fetch(`${UPDATE_AP_URL}`,{
-      method:"PUT",
+      method:'PUT',
       body:data,
       headers:{
         'Content-Type':'application/json'

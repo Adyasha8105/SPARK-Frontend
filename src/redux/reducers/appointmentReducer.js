@@ -6,6 +6,7 @@ const initialState = {
   errMessage: null,
   errLogout: null,
   isLoading: false,
+  updated:false,
 };
 
 const appointmentReducer = (state = initialState, { type, payload }) => {
@@ -58,21 +59,6 @@ const appointmentReducer = (state = initialState, { type, payload }) => {
         ...state,
         errMessage: payload,
       };
-
-    case ActionTypes.UPDATE_AP_START:
-      return {
-        ...state,
-        isLoading: true,
-        errMessage: null,
-      };
-    // case ActionTypes.UPDATE_AP_SUCCESS:
-    //   {
-    //     const index=state.appointments.filter((item)=>item.createda)
-    //     return {
-    //     ...state,
-    //     app
-    //   }
-    //   }
 
     case ActionTypes.LOGOUT_SUCCESS:
       return {
