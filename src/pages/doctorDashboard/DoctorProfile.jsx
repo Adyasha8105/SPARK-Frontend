@@ -22,7 +22,7 @@ function SpecializationTag(props) {
     <div className="flex justify-between items-center px-2 py-1 bg-blue-300 md:ml-6 md:mt-0 mt-2 sm:text-md lg:text-md rounded-3xl">
       <span>{props.tag}</span>
       <i
-        className="cursor-pointer"
+        className="cursor-pointer ml-2"
         onClick={() => {
           props.onSelect(props.id);
         }}
