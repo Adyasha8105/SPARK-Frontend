@@ -13,11 +13,11 @@
 - [About the Project](#about-the-project)
   - [Highlights](#highlights)
   - [Features](#features)
+  - [Demo](#Demo)
 - [How to use the App](#how-to-use-the-app)
-- [Future Features](#features-that-we-are-planning-to-add)
+- [Future Enhancement](#features-that-we-are-planning-to-add)
 - [License](#license)
 - [Our team](#geeks-behind-this)
-
 
 ## About The Project
 
@@ -27,11 +27,18 @@
 
 > Traditional waiting rooms that require patients to touch shared surfaces
 > and breathe shared air are beyond uncomfortable—they can be unsafe.
-> Virtual waiting rooms enable social distancing to
-> support a better patient experience and better outcomes.
-> A virtual waiting room helps you
-> prevent your healthcare organization from being associated with pesky sounds, smells, people,
-> and boredom that can easily be avoided.
+> It is not only incovinient for the patients to stand in long queues but also the crowd prove to be a breeding ground for germs and potential infections.
+
+<p align="center"><img alt="crowd" width="400px" src="./src/images/crowd.png"></p>
+
+#### Our Solution
+
+Virtual waiting rooms enable social distancing to support a better patient experience and better outcomes.
+A virtual waiting room helps you prevent your healthcare organization from being associated with pesky sounds, smells, people, and boredom that can easily be avoided.
+
+### Demo
+
+Click [here](https://www.youtube.com/watch?v=tjcLdrwBgHY) to see the workflow of the whole project.
 
 ### Highlights
 
@@ -53,7 +60,8 @@
 
 ## How to use the app
 
-#### For patients 👨: 
+#### For patients 👨:
+
 - A new user needs to sign up into the app by clicking on the Get Started button. (Or if you are an existing user you can directly login)
 - In the profile tab, update all your details.
 - Then you would need to login and be directed to your dashboard.
@@ -64,28 +72,29 @@
 - You can cancel appointments anytime by clicking on the delete button in the inventory tab.
 
 #### For doctors 👨‍⚕️:
-- A new user needs to Sign up into the app by clicking on the Get Started button. (Or if you are an existing user you can directly login)
+
+- A new user or existing user needs to sign in into the app by clicking on the Apply as doctor button.
 - In the profile tab, update all your details.
 - Then you would need to login and be directed to your dashboard.
 - In your dashboard, the waiting virtual list of patients of that day would be visible along with the details of the current patient.
 - After completion of the visit of a patient, the doctor needs to click on the next button which shall proceed the virtual queue one step ahead.
 - This would update the virtual queue and patients shall know their current position and estimated visiting time.
 
-## Features that we are planning to add:
+## Features that we are planning to add in future:
 
 - Registrations for hospitals as well.
 - Send emails and notifications to patients about the updates in read-time.
 - Authentication through OTP.
 - Store test reports, prescriptions and maintain a complete health record of the patient.
 - Dynamically display the stats of the appointments in the doctor dashboard.
-And many more.
+  And many more.
+
+## Geeks behind this
+
+| <img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px"> | <img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">           |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| <p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>    | <p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>        | <p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>       | <p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p> |
 
 ## License
 
 Distributed under the GNU License. See `LICENSE.md` for more information.
-
-## Geeks behind this
-
-|<img src="https://avatars.githubusercontent.com/u/54734029?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/65803594?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/54095539?v=4" width="100px">|<img src="https://avatars.githubusercontent.com/u/77096791?v=4" width="100px">|
-|----------------------------|--------|----------------------------|--------|
-|<p align="center">[Piyush Pradhan](https://twitter.com/piyushpradhan07)</p>|<p align="center">[Shree Mishra](https://twitter.com/mishrashree18)</p>|<p align="center">[Adyasha Mohanty](https://twitter.com/Adyasha8105)</p>|<p align="center">[Rupayan Rout](https://www.linkedin.com/in/rupayan-rout-a59b051a0)</p>|  

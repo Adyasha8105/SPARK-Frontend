@@ -98,7 +98,7 @@ export default function SignUp(props) {
                     <div className="rounded-t mb-0 px-6 py-6">
                       <div className=" mb-3">
                         <h6 className="text-primary text-2xl font-bold">
-                          Sign Up
+                          Sign Up as {type}
                         </h6>
                       </div>
                       <hr className="mt-3 border-b-1 border-primary" />
@@ -144,7 +144,7 @@ export default function SignUp(props) {
                             style={{ transition: "all .15s ease" }}
                             onClick={handleSubmit}
                           >
-                            Sign Up
+                            Sign Up as {type}
                           </button>
                         </div>
                       </form>
