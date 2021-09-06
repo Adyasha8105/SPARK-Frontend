@@ -21,7 +21,7 @@ export const createAppointmentAction = (data) => {
         });
       })
       .catch((error) => {
-        toast(error,{
+        toast.error(error,{
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

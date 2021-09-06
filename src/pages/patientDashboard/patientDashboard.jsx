@@ -28,8 +28,7 @@ import BookAppointmentAnimation from "../../images/BookAppointmentAnimation.json
 import { MdDashboard, MdFolder, MdPerson } from "react-icons/all";
 import { convertTo12 } from "../../utils/time";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 function PatientDashboard() {
   const currentUser = useSelector((state) => state.authReducer);
@@ -63,7 +62,7 @@ function PatientDashboard() {
 
   const [todayAppointment, setTodayAppointment] = useState([]); //CONTAINS THE QUEUE IF THERE
 
-  const loadingApt= useSelector((state) => state.appointmentReducer.isLoading)
+  const loadingApt = useSelector((state) => state.appointmentReducer.isLoading);
 
   const appointmentErr = useSelector(
     (state) => state.appointmentReducer.errMessage
@@ -127,10 +126,9 @@ function PatientDashboard() {
   }, []);
 
   useEffect(() => {
-    
-    if (todayAppointmentList.length > 0 && doctorsList.length>0 && doctorNo) {
-      setLoading(true)
-      
+    if (todayAppointmentList.length > 0 && doctorsList.length > 0 && doctorNo) {
+      setLoading(true);
+
       setDoctorDetails(getDoctorDetails(doctorNo)); //----------DOCTOR DETAILS FOR PROFILE CARD ADDED TO STATE----------------------//
 
       const newArray = todayAppointmentList.filter(
@@ -141,11 +139,10 @@ function PatientDashboard() {
 
       setTodayAppointment(newArray); //-------------------SETS THE QUEUE IF THERE IS AN APPOINTMENT TODAY---------------------//
 
-    
-      setIsAnyAppointment(true); 
-      setLoading(false)//------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
+      setIsAnyAppointment(true);
+      setLoading(false); //------------INDICATES TO DISPLAY THE QUEUE IF TRUE-----------------------//
     }
-  }, [todayAppointmentList,doctorsList]);
+  }, [todayAppointmentList, doctorsList]);
 
   useEffect(() => {
     setLoading(false);
@@ -298,15 +295,6 @@ function PatientDashboard() {
               </div>
             </div>
           </nav>
-          <ToastContainer position="top-right"
-            autoClose={1000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover/>
           <a
             href="/dashboard"
             id="sidenav-close"
@@ -314,7 +302,6 @@ function PatientDashboard() {
             aria-label="Close Menu"
           ></a>
         </aside>
-
         <main className="overflow-y-scroll h-screen">
           <header className="flex items-center justify-between p-4 sticky top-0 bg-white z-10">
             <div className="flex items-center justify-between">
@@ -539,6 +526,19 @@ function PatientDashboard() {
             </section>
           )}
         </main>
+        <div>
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </div>
       </div>
     );
 }
