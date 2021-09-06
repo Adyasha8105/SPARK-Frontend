@@ -6,7 +6,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import WaitingListItemButton from "../components/WaitingListItemButton";
-import { cancelAppointmentAction, getAppointmentAction } from "../redux/actions/appointmentAction";
+import {
+  cancelAppointmentAction,
+  getAppointmentAction,
+} from "../redux/actions/appointmentAction";
 import Lottie from "lottie-react";
 import { MdDashboard, MdFolder, MdPerson } from "react-icons/all";
 import SideBarAnimation from "../images/SideBarAnimation.json";
@@ -22,7 +25,7 @@ function Inventory() {
   let appointmentList = useSelector(
     (state) => state.appointmentReducer.appointments
   );
-  const loadingApt = useSelector((state) => state.appointmentReducer.isLoading)
+  const loadingApt = useSelector((state) => state.appointmentReducer.isLoading);
   const dispatch = useDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -41,11 +44,10 @@ function Inventory() {
     };
     dispatch(getAppointmentAction(data));
   };
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(false);
-    if(currentUser.isLogout)
-      history.push('/')
-  },[currentUser])
+    if (currentUser.isLogout) history.push("/");
+  }, [currentUser]);
   useEffect(() => {
     if (cancelItem) {
       handleCancelAppointment();
@@ -219,7 +221,11 @@ function Inventory() {
 
                               <div className="mt-4 flex justify-center">
                                 <WaitingListItemButton
-                                  appointmentStatus={item.status=='queued'?'Cancel':item.status}
+                                  appointmentStatus={
+                                    item.status === "queued"
+                                      ? "Cancel"
+                                      : item.status
+                                  }
                                   onClickFunc={handleCancelAppointment}
                                   item={item}
                                   isClicked={setCancelItem}
