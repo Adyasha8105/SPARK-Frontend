@@ -19,7 +19,7 @@ import { FadeLoader } from "react-spinners";
 
 function SpecializationTag(props) {
   return (
-    <div className="flex justify-between items-center px-2 py-1 bg-blue-300 sm:text-md  lg:text-md rounded-3xl">
+    <div className="flex justify-between items-center px-2 py-1 bg-blue-300 md:ml-6 md:mt-0 mt-2 sm:text-md lg:text-md rounded-3xl">
       <span>{props.tag}</span>
       <i
         className="cursor-pointer"
@@ -56,17 +56,10 @@ function DoctorProfile() {
   const history = useHistory();
   const currentUser = useSelector((state) => state.authReducer);
 
-  // var specialisations =
-  //   registeredUser.specializations === null
-  //     ? " "
-  //     : registeredUser.specializations[0];
-
   useEffect(() => {
-    if(!authUser.isSignedUp)
-      history.push('/');
-    if(authUser.type==='patient')
-      history.goBack();
-    setIsUpdated(false)
+    if (!authUser.isSignedUp) history.push("/");
+    if (authUser.type === "patient") history.goBack();
+    setIsUpdated(false);
     if (registeredUser.name) {
       setIsAlreadyRegistered(true);
       setSpecialization(registeredUser.specializations);
@@ -469,14 +462,16 @@ function DoctorProfile() {
                               </span>
                             </div>
                           </div>
-                          {specialization.map((elem, index) => (
-                            <SpecializationTag
-                              tag={elem}
-                              key={index}
-                              id={index}
-                              onSelect={removeSpecialization}
-                            />
-                          ))}
+                          <div className="grid md:flex">
+                            {specialization.map((elem, index) => (
+                              <SpecializationTag
+                                tag={elem}
+                                key={index}
+                                id={index}
+                                onSelect={removeSpecialization}
+                              />
+                            ))}
+                          </div>
 
                           <div className="col-span-6">
                             <label
@@ -501,169 +496,193 @@ function DoctorProfile() {
                             <div className="block text-md font-medium mb-4 text-gray-700">
                               Working Days
                             </div>
-                            <div className="flex items-center">
-                              <input
-                                id="Mon"
-                                name="monday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                checked={
-                                  workingDays.includes("monday") ? true : false
-                                }
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="Mon"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Mon
-                              </label>
-                              <input
-                                id="Tue"
-                                name="tuesday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                checked={
-                                  workingDays.includes("tuesday") ? true : false
-                                }
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="Tue"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Tue
-                              </label>
-                              <input
-                                id="Wed"
-                                name="wednesday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                checked={
-                                  workingDays.includes("wednesday")
-                                    ? true
-                                    : false
-                                }
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="Wed"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Wed
-                              </label>
-                              <input
-                                id="Thur"
-                                name="thursday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                checked={
-                                  workingDays.includes("thursday")
-                                    ? true
-                                    : false
-                                }
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="Thur"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Thur
-                              </label>
-                              <input
-                                id="Fri"
-                                name="friday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                checked={
-                                  workingDays.includes("friday") ? true : false
-                                }
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="Fri"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Fri
-                              </label>
-                              <input
-                                id="Sat"
-                                name="saturday"
-                                type="checkbox"
-                                checked={
-                                  workingDays.includes("saturday")
-                                    ? true
-                                    : false
-                                }
-                                onChange={(e) => handleDays(e)}
-                                className="block text-md font-medium text-gray-700"
-                              />
-                              <label
-                                htmlFor="street-address"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Sat
-                              </label>
-                              <input
-                                id="Sun"
-                                name="sunday"
-                                type="checkbox"
-                                onChange={(e) => handleDays(e)}
-                                className="block text-md font-medium text-gray-700"
-                                checked={
-                                  workingDays.includes("sunday") ? true : false
-                                }
-                              />
-                              <label
-                                htmlFor="Sun"
-                                className="block text-md font-medium mr-5 ml-1 text-gray-700"
-                              >
-                                Sun
-                              </label>
-                            </div>
-                            <div className="col-span-6 mt-6">
-                              <div className="block text-md font-medium mb-4 text-gray-700">
-                                Working Hours
+                            <div className="grid md:flex">
+                              <div className="flex items-center">
+                                <input
+                                  id="Mon"
+                                  name="monday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  checked={
+                                    workingDays.includes("monday")
+                                      ? true
+                                      : false
+                                  }
+                                  className="block text-md font-medium text-gray-700"
+                                />
+                                <label
+                                  htmlFor="Mon"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Mon
+                                </label>
                               </div>
-                              <div className="flex items-center justify-start">
-                                <div className="flex items-center justify-start pl-4 pr-1 py-1 bg-blue-300 rounded-3xl">
-                                  <label
-                                    htmlFor="start"
-                                    className="block text-md font-medium  mr-3 text-gray-700 rounded-3xl"
-                                  >
-                                    Start Time
-                                  </label>
-                                  <input
-                                    type="time"
-                                    name="start"
-                                    id="start"
-                                    value={startTime}
-                                    onChange={(e) =>
-                                      setStartTime(e.target.value + ":00")
-                                    }
-                                    required
-                                    className="block text-md font-medium text-gray-700 px-4 py-1 rounded-3xl focus:outline-none"
-                                  />
-                                </div>
-                                <div className="flex items-center justify-start ml-6  pl-4 pr-1 py-1 bg-blue-300 rounded-3xl">
-                                  <label
-                                    htmlFor="end"
-                                    className="block text-md font-medium  mr-3 text-gray-700"
-                                  >
-                                    End Time
-                                  </label>
-                                  <input
-                                    type="time"
-                                    name="end"
-                                    id="end"
-                                    value={endTime}
-                                    onChange={(e) =>
-                                      setEndTime(e.target.value + ":00")
-                                    }
-                                    required
-                                    className="block text-md font-medium text-gray-700 px-4 py-1 rounded-3xl focus:outline-none"
-                                  />
-                                </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Tue"
+                                  name="tuesday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  checked={
+                                    workingDays.includes("tuesday")
+                                      ? true
+                                      : false
+                                  }
+                                  className="block text-md font-medium text-gray-700"
+                                />
+                                <label
+                                  htmlFor="Tue"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Tue
+                                </label>
+                              </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Wed"
+                                  name="wednesday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  checked={
+                                    workingDays.includes("wednesday")
+                                      ? true
+                                      : false
+                                  }
+                                  className="block text-md font-medium text-gray-700"
+                                />
+                                <label
+                                  htmlFor="Wed"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Wed
+                                </label>
+                              </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Thur"
+                                  name="thursday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  checked={
+                                    workingDays.includes("thursday")
+                                      ? true
+                                      : false
+                                  }
+                                  className="block text-md font-medium text-gray-700"
+                                />
+                                <label
+                                  htmlFor="Thur"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Thur
+                                </label>
+                              </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Fri"
+                                  name="friday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  checked={
+                                    workingDays.includes("friday")
+                                      ? true
+                                      : false
+                                  }
+                                  className="block text-md font-medium text-gray-700"
+                                />
+
+                                <label
+                                  htmlFor="Fri"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Fri
+                                </label>
+                              </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Sat"
+                                  name="saturday"
+                                  type="checkbox"
+                                  checked={
+                                    workingDays.includes("saturday")
+                                      ? true
+                                      : false
+                                  }
+                                  onChange={(e) => handleDays(e)}
+                                  className="block text-md font-medium text-gray-700"
+                                />
+
+                                <label
+                                  htmlFor="street-address"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Sat
+                                </label>
+                              </div>
+                              <div className="flex items-center">
+                                <input
+                                  id="Sun"
+                                  name="sunday"
+                                  type="checkbox"
+                                  onChange={(e) => handleDays(e)}
+                                  className="block text-md font-medium text-gray-700"
+                                  checked={
+                                    workingDays.includes("sunday")
+                                      ? true
+                                      : false
+                                  }
+                                />
+                                <label
+                                  htmlFor="Sun"
+                                  className="block text-md font-medium mr-5 ml-1 text-gray-700"
+                                >
+                                  Sun
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-span-6">
+                            <div className="block text-md font-medium mb-4 text-gray-700">
+                              Working Hours
+                            </div>
+                            <div className="grid md:flex items-center justify-start">
+                              <div className="flex items-center justify-start pl-4 pr-1 py-1 bg-blue-300 rounded-3xl">
+                                <label
+                                  htmlFor="start"
+                                  className="block text-md font-medium  mr-3 text-gray-700 rounded-3xl"
+                                >
+                                  Start Time
+                                </label>
+                                <input
+                                  type="time"
+                                  name="start"
+                                  id="start"
+                                  value={startTime}
+                                  onChange={(e) =>
+                                    setStartTime(e.target.value + ":00")
+                                  }
+                                  required
+                                  className="block text-md font-medium text-gray-700 px-4 py-1 rounded-3xl focus:outline-none"
+                                />
+                              </div>
+                              <div className="flex items-center justify-start md:ml-6 md:mt-0 mt-5 pl-4 pr-1 py-1 bg-blue-300 rounded-3xl">
+                                <label
+                                  htmlFor="end"
+                                  className="block text-md font-medium  mr-3 text-gray-700"
+                                >
+                                  End Time
+                                </label>
+                                <input
+                                  type="time"
+                                  name="end"
+                                  id="end"
+                                  value={endTime}
+                                  onChange={(e) =>
+                                    setEndTime(e.target.value + ":00")
+                                  }
+                                  required
+                                  className="block text-md font-medium text-gray-700 px-4 py-1 rounded-3xl focus:outline-none"
+                                />
                               </div>
                             </div>
                           </div>
