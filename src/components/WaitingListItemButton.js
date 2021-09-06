@@ -5,6 +5,7 @@ import { FiFastForward } from "react-icons/fi";
 import { BiTimeFive } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 
 function WaitingListItemButton({
   appointmentStatus,
@@ -12,6 +13,7 @@ function WaitingListItemButton({
   PaddingButton,
   isClicked,
   item,
+  loading
 }) {
   let buttonColor;
   let buttonTextColor;
@@ -50,8 +52,12 @@ function WaitingListItemButton({
     buttonColor = "bg-dark";
     buttonTextColor = "text-white";
     buttonBorderColor = "border-white";
+  } else if (appointmentStatus === "completed") {
+    buttonColor = "bg-green-600";
+    buttonTextColor = "text-white";
+    buttonBorderColor = "border-white";
   }
-
+  console.log(loading)
   const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
   return (
     <button 
@@ -62,7 +68,10 @@ function WaitingListItemButton({
       className={`${buttonColor} ${buttonTextColor} ${PaddingButton} md:mt-0 mt-5 outline-none px-4 py-2 flex flex-row justify-center space-x-2 items-center border ${buttonBorderColor} rounded-md`}
     >
       <p>{capitalize(appointmentStatus)}</p>
-      {appointmentStatus === "Ongoing" ? (
+      {loading && (appointmentStatus ==="New Appointment" || appointmentStatus ==="Cancel" || appointmentStatus ==="Next") ? (
+        <ClipLoader color={"#ffffff"} size={20}/>
+      ):
+      appointmentStatus === "Ongoing" ? (
         <BsArrowRepeat />
       ) : appointmentStatus === "Upcoming" ? (
         <FiFastForward />

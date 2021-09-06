@@ -21,6 +21,7 @@ const appointmentReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         errMessage: null,
+        isLoading:true 
       };
     case ActionTypes.CREATE_APPOINTMENT_SUCCESS:
       return {
@@ -29,11 +30,13 @@ const appointmentReducer = (state = initialState, { type, payload }) => {
         appointments: payload.success
           ? [...state.appointments, payload.response]
           : state.appointments,
+        isLoading:false
       };
     case ActionTypes.CREATE_APPOINTMENT_FAILURE:
       return {
         ...state,
         errMessage: payload,
+        isLoading:false
       };
     case ActionTypes.GET_APPOINTMENT:
       return {
@@ -45,19 +48,27 @@ const appointmentReducer = (state = initialState, { type, payload }) => {
     case ActionTypes.GET_APPOINTMENT_FAILURE:
       return {
         ...state,
+        appointments:[],
         errMessage: payload,
       };
-    case ActionTypes.CANCEL_APPOINTMENT:
+    case ActionTypes.CANCEL_APPOINTMENT_START:
+      return {
+        ...state,
+        isLoading:true
+      }
+    case ActionTypes.CANCEL_APPOINTMENT_SUCCESS:
       return {
         ...state,
         appointments: state.appointments.filter(
           (ap) => ap.createdat !== payload + "Z"
         ),
+        isLoading:false
       };
     case ActionTypes.CANCEL_APPOINTMENT_FAILURE:
       return {
         ...state,
         errMessage: payload,
+        isLoading:false
       };
 
     case ActionTypes.LOGOUT_SUCCESS:

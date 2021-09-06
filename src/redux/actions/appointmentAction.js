@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   createAppointment,
   getAppointment,
@@ -20,10 +21,20 @@ export const createAppointmentAction = (data) => {
         });
       })
       .catch((error) => {
+        toast(error,{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         dispatch({
           type: ActionTypes.CREATE_APPOINTMENT_FAILURE,
           payload: error,
         });
+        
       });
   };
 };
@@ -74,10 +85,14 @@ export const cancelAppointmentAction = (data) => {
   //   createdat: "2021-08-29T20:45:27.665",
   // };
   return (dispatch) => {
+    dispatch({
+      type:ActionTypes.CANCEL_APPOINTMENT_START
+    })
     cancelAppointment(JSON.stringify(data))
+    
       .then((result) => {
         dispatch({
-          type: ActionTypes.CANCEL_APPOINTMENT,
+          type: ActionTypes.CANCEL_APPOINTMENT_SUCCESS,
           payload: data.createdat,
         });
       })

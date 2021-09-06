@@ -50,7 +50,8 @@ const todayAppointmentReducer = (state = initialState, { type, payload }) => {
           
           return {
           ...state,
-          updated:true
+          updated:true,
+          isLoading:false
         }
         }
         case ActionTypes.UPDATE_AP_FAILURE:
@@ -59,7 +60,8 @@ const todayAppointmentReducer = (state = initialState, { type, payload }) => {
             return {
             ...state,
             updated:false,
-            errMessage:payload
+            errMessage:payload,
+            isLoading:false
           }
           }
   

@@ -38,6 +38,7 @@ function DoctorDashboard() {
   const isUpdated = useSelector(
     (state) => state.todayAppointmentReducer.updated
   );
+  const loadingApt = useSelector((state) => state.todayAppointmentReducer.isLoading)
   const [applist, setApplist] = useState([]);
   const [latestPatient, setLatestPatient] = useState();
   const dispatch = useDispatch();
@@ -285,6 +286,7 @@ function DoctorDashboard() {
                               handleUpdateAppointment();
                             }}
                             appointmentStatus={item.status}
+                            loading={loadingApt}
                           />
                         );
                       })}

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import WaitingListItemButton from "../components/WaitingListItemButton";
-import { cancelAppointmentAction } from "../redux/actions/appointmentAction";
+import { cancelAppointmentAction, getAppointmentAction } from "../redux/actions/appointmentAction";
 import Lottie from "lottie-react";
 import { MdDashboard, MdFolder, MdPerson } from "react-icons/all";
 import SideBarAnimation from "../images/SideBarAnimation.json";
@@ -19,9 +19,10 @@ import { HiLogout } from "react-icons/hi";
 
 function Inventory() {
   const currentUser = useSelector((state) => state.authReducer);
-  const appointmentList = useSelector(
+  let appointmentList = useSelector(
     (state) => state.appointmentReducer.appointments
   );
+  const loadingApt = useSelector((state) => state.appointmentReducer.isLoading)
   const dispatch = useDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -29,8 +30,17 @@ function Inventory() {
 
   useEffect(() => {
     if (!currentUser.isLoggedIn) history.push("/");
+    fetchAllAppointments();
   }, []);
-
+  const fetchAllAppointments = () => {
+    //------------FETCHES LIST OF APPOINTMENT FOR THE CURRENT LOGGED IN PATIENT----------------------//
+    const data = {
+      pphoneNo: currentUser.phoneno,
+      // status: "queued",
+      forUser: currentUser.type,
+    };
+    dispatch(getAppointmentAction(data));
+  };
   useEffect(()=>{
     setLoading(false);
     if(currentUser.isLogout)
@@ -77,6 +87,7 @@ function Inventory() {
     else dispatch(patientLogout(currentUser.access, currentUser.phoneno));
   };
 
+  // appointmentList = appointmentList.filter(appointment => appointment.status!=='completed')
   return (
     <div className="main-dashboard">
       <aside id="sidenav-open" className="h-screen">
@@ -208,10 +219,11 @@ function Inventory() {
 
                               <div className="mt-4 flex justify-center">
                                 <WaitingListItemButton
-                                  appointmentStatus="Cancel"
+                                  appointmentStatus={item.status=='queued'?'Cancel':item.status}
                                   onClickFunc={handleCancelAppointment}
                                   item={item}
                                   isClicked={setCancelItem}
+                                  loading={loadingApt}
                                 />
                               </div>
                             </div>

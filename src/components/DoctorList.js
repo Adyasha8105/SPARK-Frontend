@@ -7,6 +7,7 @@ function WaitingListItem({
   isUser,
   appointmentStatus,
   onClickFunc,
+  loading
 }) {
   return (
     <div className="grid md:flex flex-row bg-gray-50 rounded-md py-3 items-center">
@@ -19,6 +20,7 @@ function WaitingListItem({
         PaddingButton="mx-8"
         appointmentStatus={appointmentStatus}
         onClickFunc={onClickFunc}
+        loading={loading}
       />
     </div>
   );

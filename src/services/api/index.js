@@ -335,8 +335,12 @@ export const getAppointment = async (data) => {
         })
         .catch((err) => reject(err));
     } else if(data.forUser === 'patient'){
+      const url = data.status?GET_AP_URL +
+      `all?forUser=patient&status=${data.status}&pphoneNo=${data.pphoneNo}`:
+      GET_AP_URL +
+          `all?forUser=patient&pphoneNo=${data.pphoneNo}`
       await fetch(
-        GET_AP_URL + `all?pphoneNo=${data.pphoneNo}&forUser=patient&status=queued`,
+        url,
         {
           method: "GET",
           headers: {

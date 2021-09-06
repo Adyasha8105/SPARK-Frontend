@@ -27,6 +27,9 @@ import SideBarAnimation from "../../images/SideBarAnimation.json";
 import BookAppointmentAnimation from "../../images/BookAppointmentAnimation.json";
 import { MdDashboard, MdFolder, MdPerson } from "react-icons/all";
 import { convertTo12 } from "../../utils/time";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function PatientDashboard() {
   const currentUser = useSelector((state) => state.authReducer);
@@ -59,6 +62,8 @@ function PatientDashboard() {
   );
 
   const [todayAppointment, setTodayAppointment] = useState([]); //CONTAINS THE QUEUE IF THERE
+
+  const loadingApt= useSelector((state) => state.appointmentReducer.isLoading)
 
   const appointmentErr = useSelector(
     (state) => state.appointmentReducer.errMessage
@@ -149,7 +154,6 @@ function PatientDashboard() {
 
   useEffect(() => {
     setLoading(false);
-
     const todayDate = new Date().toJSON().slice(0, 10);
     const AllAppointment = appointmentDetails(todayDate);
 
@@ -210,7 +214,7 @@ function PatientDashboard() {
         symptoms: symptoms,
         type: type,
       };
-      setLoading(true);
+
       dispatch(createAppointmentAction(appointmentData));
 
       setAppointmentDate("");
@@ -294,7 +298,15 @@ function PatientDashboard() {
               </div>
             </div>
           </nav>
-
+          <ToastContainer position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover/>
           <a
             href="/dashboard"
             id="sidenav-close"
@@ -461,6 +473,7 @@ function PatientDashboard() {
                       className="mx-0"
                       appointmentStatus="New Appointment"
                       onClickFunc={() => setModalIsOpen(true)}
+                      loading={loadingApt}
                     />
                   </div>
                   <div className="flex flex-row items-center mt-8">
@@ -517,6 +530,7 @@ function PatientDashboard() {
                   className="mx-0"
                   appointmentStatus="New Appointment"
                   onClickFunc={() => setModalIsOpen(true)}
+                  loading={loadingApt}
                 />
               </div>
               <div className="mt-5 md:mt-0 w-72">
