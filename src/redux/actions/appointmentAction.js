@@ -21,7 +21,7 @@ export const createAppointmentAction = (data) => {
         });
       })
       .catch((error) => {
-        toast.error(error,{
+        toast.error(error, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -29,12 +29,11 @@ export const createAppointmentAction = (data) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
+        });
         dispatch({
           type: ActionTypes.CREATE_APPOINTMENT_FAILURE,
           payload: error,
         });
-        
       });
   };
 };
@@ -78,18 +77,11 @@ export const updateAppointmentAction = (data) => {
   };
 };
 export const cancelAppointmentAction = (data) => {
-  // const tempData = {
-  //   pphoneno: "1234567890",
-  //   dphoneno: "1234098769",
-  //   aptdate: "2021-09-17",
-  //   createdat: "2021-08-29T20:45:27.665",
-  // };
   return (dispatch) => {
     dispatch({
-      type:ActionTypes.CANCEL_APPOINTMENT_START
-    })
+      type: ActionTypes.CANCEL_APPOINTMENT_START,
+    });
     cancelAppointment(JSON.stringify(data))
-    
       .then((result) => {
         dispatch({
           type: ActionTypes.CANCEL_APPOINTMENT_SUCCESS,
@@ -117,16 +109,16 @@ export const getTodayAppointmentAction = (data) => {
         });
       })
       .catch((error) => {
-        if(!error.err)
-        dispatch({
-          type: ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS,
-          payload: [],
-        });
+        if (!error.err)
+          dispatch({
+            type: ActionTypes.GET_TODAY_APPOINTMENT_SUCCESS,
+            payload: [],
+          });
         else
-        dispatch({
-          type:ActionTypes.GET_TODAY_APPOINTMENT_FAILURE,
-          payload:error.err
-        })
+          dispatch({
+            type: ActionTypes.GET_TODAY_APPOINTMENT_FAILURE,
+            payload: error.err,
+          });
       });
   };
 };
